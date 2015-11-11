@@ -19,7 +19,6 @@ public:
 	void SetSourceRect(SDL_Rect source);
 	void SetOffset(int x, int y);/*offset is relative width and height of the sprite not the texture */
 	void Draw();
-protected:
 	void Init(std::string imagePath, SDL_Rect destination, SDL_Rect source);
 private:
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer*);
