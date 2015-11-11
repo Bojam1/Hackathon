@@ -10,9 +10,8 @@
 
 class Sprite
 {
-public :
+public:
 	Sprite();
-	void Init(std::string imagePath, SDL_Rect destination, SDL_Rect source);
 	void SetPosition(float x, float y);
 	void SetWidth(float w);
 	void SetHeight(float h);
@@ -20,7 +19,7 @@ public :
 	void SetSourceRect(SDL_Rect source);
 	void SetOffset(int x, int y);/*offset is relative width and height of the sprite not the texture */
 	void Draw();
-
+	void Init(std::string imagePath, SDL_Rect destination, SDL_Rect source);
 private:
 	SDL_Texture* loadTexture(std::string path, SDL_Renderer*);
 	SDL_Texture* myTexture;

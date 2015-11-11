@@ -36,10 +36,27 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
+=======
+<<<<<<< HEAD
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResponder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyContactListener.h">
+=======
+    <ClInclude Include="Button.h">
+>>>>>>> refs/remotes/origin/master
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+>>>>>>> 9cd67728e441d991d5fbf2ce81d15dea80d69247
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,10 +76,22 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
+=======
+<<<<<<< HEAD
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+=======
+    <ClCompile Include="Button.cpp">
+>>>>>>> refs/remotes/origin/master
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,5 +108,6 @@
     <Image Include="Assets\PlayButton.png">
       <Filter>Artwork</Filter>
     </Image>
+>>>>>>> 9cd67728e441d991d5fbf2ce81d15dea80d69247
   </ItemGroup>
 </Project>

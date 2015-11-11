@@ -7,8 +7,14 @@
 #include "Button.h"
 #include "Renderer.h"
 #include "Sprite.h"
+<<<<<<< HEAD
 #include "InputHandler.h"
 #include "Player.h"
+=======
+#include "KeyBoardInput.h"
+#include "Enemy.h"
+#include "MyContactListener.h"
+>>>>>>> refs/remotes/origin/master
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -60,6 +66,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 
+	//Box2D
+	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	const b2Vec2 GRAVITY = b2Vec2(0, 1);
+	b2World* m_world = new b2World(GRAVITY);
+	MyContactListener myContactListenerInstance;
+	m_world->SetContactListener(&myContactListenerInstance);
+	const float box2D_timestep = 1.0f / 60.0f;
+	const int vel_iterations = 6;
+	const int pos_iterations = 2;
+
+	//entities
+	//Enemy e = new Enemy(
+
+
+
 	//SDL
 #pragma region SDL STUFF
 	//Initialize SDL
@@ -109,7 +130,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					break;
 				case PLAY:
+<<<<<<< HEAD
 					UpdateGame();
+=======
+					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
+					//UpdateGame();
+>>>>>>> refs/remotes/origin/master
 					DrawGame();
 					break;
 				}//end switch
