@@ -89,7 +89,8 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="KeyBoardInput.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />
@@ -100,7 +101,8 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
-    <ClCompile Include="KeyBoardInput.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sprite.cpp" />

@@ -33,9 +33,15 @@
     <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyBoardInput.h">
+    <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+=======
 <<<<<<< HEAD
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
@@ -46,6 +52,7 @@
     <ClInclude Include="MyContactListener.h">
 =======
     <ClInclude Include="Button.h">
+>>>>>>> refs/remotes/origin/master
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
@@ -66,15 +73,22 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KeyBoardInput.cpp">
+    <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+=======
 <<<<<<< HEAD
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
 =======
     <ClCompile Include="Button.cpp">
+>>>>>>> refs/remotes/origin/master
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
