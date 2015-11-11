@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include <SDL.h>
-#undef main 
+#undef main
 #include "Box2D\Box2D.h"
 
 int main()
