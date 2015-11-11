@@ -3,14 +3,20 @@
 using namespace std;
 #include "Level.h"
 
+const int Level::SCALE = 32;
+const int Level::MAXLEVELS = 5;
+int Level::currentlevel = 0;
+//sf::Texture Level::texture;
+
 Level::Level()
 {
 }
 
-void Level::LoadLevel(std::string name)
+
+void Level::LoadLevel(std::string name, b2World * world)
 {
 	std::vector<std::string> map = Level::LoadFromTextFile(name);
-	const int mapX = 58;
+	const int mapX = 41;
 	const int mapY = 23;
 	for (int y = 0; y < mapY; y++)
 	{
@@ -22,39 +28,49 @@ void Level::LoadLevel(std::string name)
 			if (c == 'F')
 			{
 				//temp.setTextureRect(sf::IntRect(1 * SCALE, 0, SCALE, SCALE));
-				//SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				//PlatformManager::addPlatform(temp, world);
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world,"Assets/bottom.png" );
 
 
 			}
-			if (c == 'w')
+			if (c == 'l')
 			{
 				//temp.setTextureRect(sf::IntRect(0 * SCALE, 0, SCALE, SCALE));
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/left.png");
+
+			}
+			if (c == 'r')
+			{
+
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/right.png");
 
 			}
 			if (c == 'R')
 			{
-				//temp.setTextureRect(sf::IntRect(4 * SCALE, 0, SCALE, SCALE));
-				//PlatformManager::addFloor(x*SCALE, y*SCALE, SCALE, SCALE, world, texture);
+				
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/corner.png");
 
 			}
 			if (c == 'L')
 			{
 
-				//temp.setTextureRect(sf::IntRect(3 * SCALE, 0, SCALE, SCALE));
-				//PlatformManager::addFloor(x*SCALE, y*SCALE, SCALE, SCALE, world, texture);
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/corner_bot_left.png");
 			}
-			if (c == 'l')
+			if (c == 't')
 			{
 
-				//temp.setTextureRect(sf::IntRect(2 * SCALE, 0, SCALE, SCALE));
-				//PlatformManager::addLeftSensor(x * SCALE, y*SCALE, SCALE, SCALE, world, 1);	//1 for left sensor
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/top_wall_bottomhalf.png");
 			}
-			if (c == 'r')
+			if (c == 'T')
 			{
 
-				//temp.setTextureRect(sf::IntRect(4 * SCALE, 0, SCALE, SCALE));
-				//PlatformManager::addLeftSensor(x * SCALE, y*SCALE, SCALE, SCALE, world, 0);	//0 for right sensor
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/top_wall_tophalf.png");
 			}
 		}
 	}

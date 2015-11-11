@@ -6,12 +6,14 @@
 #include <iostream> 
 #include <vector>
 #include <string>
+#include <SDL.h>
+#include "ObstacleManager.h"
 
 class Level
 {
 public:
 	Level();
-	static void LoadLevel(string name);
+	static void LoadLevel(string name, b2World *world);
 	static vector<string> LoadFromTextFile(string name);
 
 

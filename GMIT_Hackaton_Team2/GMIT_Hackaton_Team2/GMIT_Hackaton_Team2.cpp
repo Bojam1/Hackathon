@@ -8,8 +8,10 @@
 #include "Renderer.h"
 #include "Sprite.h"
 #include "InputHandler.h"
+#include "ObstacleManager.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Level.h"
 #include "MyContactListener.h"
 
 //Screen dimension constants
@@ -127,8 +129,9 @@ int _tmain(int argc, _TCHAR* argv[])
 					break;
 				case PLAY:
 					UpdateGame();
-					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					DrawGame();
+					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
+					
 					break;
 				}//end switch
 
@@ -148,7 +151,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void Init()
 {
+	
 	player.Init(myRect, world);
+	Level::LoadLevel("Level1.txt", world);
 	gameState = MENU;
 	backGroundImage = new Sprite();
 	SDL_Rect destination = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -162,9 +167,11 @@ void Init()
 void DrawGame()
 {
 	Renderer::GetInstance()->ClearRenderer();
-	player.Draw();
+	
+	
 	/*Call Darw on objects here*/
-
+	ObstacleManager::GetInstance()->Draw();
+	player.Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
