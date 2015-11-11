@@ -7,6 +7,8 @@
 #include "Renderer.h"
 #include "Sprite.h"
 #include "KeyBoardInput.h"
+#include "Enemy.h"
+#include "MyContactListener.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -42,6 +44,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	gameState = MENU;
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
+
+	//Box2D
+	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	const b2Vec2 GRAVITY = b2Vec2(0, 1);
+	b2World* m_world = new b2World(GRAVITY);
+	MyContactListener myContactListenerInstance;
+	m_world->SetContactListener(&myContactListenerInstance);
+	const float box2D_timestep = 1.0f / 60.0f;
+	const int vel_iterations = 6;
+	const int pos_iterations = 2;
+
+	//entities
+	//Enemy e = new Enemy(
+
+
 
 	//SDL
 #pragma region SDL STUFF
@@ -97,6 +114,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					break;
 				case PLAY:
+					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					//UpdateGame();
 					//DrawGame();
 					break;
@@ -122,7 +140,7 @@ void Init()
 	backGroundImage = new Sprite();
 	SDL_Rect destination = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	SDL_Rect Source = { 0, 0, 1240, 720 };
-	backGroundImage->Init("Assets/menu.png", destination, Source);
+	//backGroundImage->Init("Assets/menu.png", destination, Source);    *************************************************************
 	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 - 59, 323, 118 };
 }
 void DrawGame()

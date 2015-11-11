@@ -14,12 +14,13 @@
     <ProjectGuid>{23ED3674-598A-417E-BD6B-462581016434}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GMIT_Hackaton_Team2</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -84,13 +85,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionResponder.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="KeyBoardInput.h" />
+    <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
     <ClCompile Include="KeyBoardInput.cpp" />
     <ClCompile Include="Renderer.cpp" />
