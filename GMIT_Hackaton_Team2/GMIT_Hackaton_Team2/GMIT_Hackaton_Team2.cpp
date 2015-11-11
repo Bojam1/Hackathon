@@ -7,7 +7,8 @@
 #include "Button.h"
 #include "Renderer.h"
 #include "Sprite.h"
-#include "KeyBoardInput.h"
+#include "InputHandler.h"
+#include "Player.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -17,15 +18,28 @@ const int SCREEN_HEIGHT = 704;			//SDL
 const int MENU = 0, PLAY = 1, PAUSE = 2, GAMEOVER = 3;
 int gameState;
 
-//box2d stuff
-const int SCALE = 32;
-
+InputHandler inputHandler = InputHandler();
 Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
+Player player;
+
+
+//box2d stuff
+const int SCALE = 32;
+b2Vec2 gravity(0.0f, 0.0f);
+
+// Construct a world object, which will hold and simulate the rigid bodies.
+b2World *world = new b2World(gravity);
+// Prepare for simulation. Typically we use a time step of 1/60 of a
+// second (60Hz) and 10 iterations. This provides a high quality simulation
+// in most game scenarios.
+float32 timeStep = 1.0f / 60.0f;
+int32 velocityIterations = 6;
+int32 positionIterations = 2;
 
 
 //methods
@@ -79,13 +93,8 @@ int _tmain(int argc, _TCHAR* argv[])
 			while (!quit)
 			{
 				while (SDL_PollEvent(&e) != 0) {
-					KeyBoardInput::GetInstance()->updateKeyboard(e);
-					switch (e.type)
-					{
-					case SDL_QUIT:
+					if (inputHandler.CheckInput(SDLK_ESCAPE, e)) {
 						quit = true;
-						break;
-
 					}
 				}
 
@@ -100,13 +109,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					break;
 				case PLAY:
-					//UpdateGame();
+					UpdateGame();
 					DrawGame();
 					break;
 				}//end switch
 
 				 // Escape button
-				if (KeyBoardInput::GetInstance()->isKeyPressed(SDLK_ESCAPE))
+				if (inputHandler.CheckInput(SDLK_ESCAPE, e))//::GetInstance()->isKeyPressed(SDLK_ESCAPE))
 				{
 					quit = true;
 				}
@@ -121,6 +130,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void Init()
 {
+	player.Init(myRect, world);
 	gameState = MENU;
 	backGroundImage = new Sprite();
 	SDL_Rect destination = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -134,7 +144,7 @@ void Init()
 void DrawGame()
 {
 	Renderer::GetInstance()->ClearRenderer();
-
+	player.Draw();
 	/*Call Darw on objects here*/
 
 
@@ -173,6 +183,9 @@ bool UpdateMenu(SDL_Event e)
 }
 void UpdateGame()
 {
+	player.Move(inputHandler);
+	player.Update();
+	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()
 {
@@ -180,6 +193,7 @@ void Reset()
 }
 void ClearPointers()
 {
+	delete world;
 	delete backGroundImage;
 }
 
