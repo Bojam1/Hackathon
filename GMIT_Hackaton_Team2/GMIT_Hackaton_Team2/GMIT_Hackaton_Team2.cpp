@@ -1,9 +1,10 @@
 #include "stdafx.h"
 
 #include <SDL.h>
+#include <SDL_image.h>
 #undef main
 #include "Box2D\Box2D.h"
-
+#include "Button.h"
 #include "Renderer.h"
 #include "Sprite.h"
 #include "KeyBoardInput.h"
@@ -20,6 +21,8 @@ int gameState;
 const int SCALE = 32;
 
 Sprite* backGroundImage;
+Button playButton;
+Button exitButton;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -91,14 +94,14 @@ int _tmain(int argc, _TCHAR* argv[])
 				{
 				case MENU:
 					//updateMenu
-				//	quit = UpdateMenu(e);
+					quit = UpdateMenu(e);
 					//draw menu
-					//DrawMenu();
+					DrawMenu();
 
 					break;
 				case PLAY:
 					//UpdateGame();
-					//DrawGame();
+					DrawGame();
 					break;
 				}//end switch
 
@@ -124,6 +127,9 @@ void Init()
 	SDL_Rect Source = { 0, 0, 1240, 720 };
 	backGroundImage->Init("Assets/menu.png", destination, Source);
 	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 - 59, 323, 118 };
+	playButton.Init(destination, "Assets/PlayButton.png");
+	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 * 3 - 59, 323, 118 };
+	exitButton.Init(destination, "Assets/ExitButton.png");
 }
 void DrawGame()
 {
@@ -140,6 +146,8 @@ void DrawMenu()
 
 	/*Call Darw on objects here*/
 	backGroundImage->Draw();
+	playButton.Draw();
+	exitButton.Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -153,12 +161,12 @@ bool UpdateMenu(SDL_Event e)
 			int mouse_y = e.button.y;
 			//SDL_Log("Mouse Button 1 (left) is pressed. x = " + x );
 			std::cout << "Mouse Button 1 (left) is pressed. x = " << mouse_x << ", y = " << mouse_y << std::endl;
-		/*	if (playButton.IsClicked(mouse_x, mouse_y)) {
+			if (playButton.IsClicked(mouse_x, mouse_y)) {
 				gameState = PLAY;
 			}
 			else if (exitButton.IsClicked(mouse_x, mouse_y)) {
 				return true;
-			}*/
+			}
 		}
 	}
 	return false;
