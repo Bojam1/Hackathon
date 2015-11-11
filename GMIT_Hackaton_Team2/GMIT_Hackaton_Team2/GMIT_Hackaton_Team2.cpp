@@ -7,14 +7,10 @@
 #include "Button.h"
 #include "Renderer.h"
 #include "Sprite.h"
-<<<<<<< HEAD
 #include "InputHandler.h"
 #include "Player.h"
-=======
-#include "KeyBoardInput.h"
 #include "Enemy.h"
 #include "MyContactListener.h"
->>>>>>> refs/remotes/origin/master
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -130,12 +126,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					break;
 				case PLAY:
-<<<<<<< HEAD
 					UpdateGame();
-=======
 					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
-					//UpdateGame();
->>>>>>> refs/remotes/origin/master
 					DrawGame();
 					break;
 				}//end switch
