@@ -3,7 +3,7 @@
 
 #include "Sprite.h"
 
-class CollisionResponder : Sprite{
+class CollisionResponder{
 public:
 	virtual ~CollisionResponder() {}
 	virtual void onBeginContact(CollisionResponder* other) = 0;

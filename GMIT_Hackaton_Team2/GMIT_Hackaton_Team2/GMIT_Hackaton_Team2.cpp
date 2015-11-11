@@ -25,6 +25,7 @@ const int SCALE = 32;
 Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
+Enemy* enemy;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -58,10 +59,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
 
-	//entities
-	//Enemy e = new Enemy(
-
-
+	enemy = new Enemy(*m_world, b2Vec2(50, 100), 50, 50);
 
 	//SDL
 #pragma region SDL STUFF
@@ -119,7 +117,9 @@ int _tmain(int argc, _TCHAR* argv[])
 				case PLAY:
 					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					//UpdateGame();
+					
 					DrawGame();
+					
 					break;
 				}//end switch
 
@@ -139,6 +139,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void Init()
 {
+	enemy->Init("Assets/enemy.png");
 	gameState = MENU;
 	backGroundImage = new Sprite();
 	SDL_Rect destination = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -154,7 +155,7 @@ void DrawGame()
 	Renderer::GetInstance()->ClearRenderer();
 
 	/*Call Darw on objects here*/
-
+	enemy->Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -191,6 +192,7 @@ bool UpdateMenu(SDL_Event e)
 }
 void UpdateGame()
 {
+	enemy->Update();
 }
 void Reset()
 {

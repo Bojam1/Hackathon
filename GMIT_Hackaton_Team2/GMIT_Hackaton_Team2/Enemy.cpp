@@ -1,7 +1,13 @@
 #include "stdafx.h"
 #include "Enemy.h"
 
-Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height, Direction dir) :CollisionResponder(){
+Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height) :CollisionResponder(){
+
+	geometry.x = position.x;
+	geometry.y = position.y;
+	geometry.w = width;
+	geometry.h = height;
+
 	//Define a b2body
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -18,6 +24,7 @@ Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height, Dire
 	boxBody->GetFixtureList()->SetRestitution(0.0f);
 
 	boxBody->SetGravityScale(0.0f);
+
 }
 
 Enemy::~Enemy() {
@@ -58,5 +65,22 @@ float Enemy::GetWidth() const {
 }
 
 void Enemy::Update() {
-	Move(Up);
+}
+
+void Enemy::Draw() {
+	m_sprite->Draw();
+}
+
+void Enemy::onBeginContact(CollisionResponder* other) {
+	std::cout << "enemy Collide begin" << std::endl;
+}
+
+void Enemy::onEndContact(CollisionResponder* other) {
+	std::cout << "enemy Collide end" << std::endl;
+}
+
+void Enemy::Init(std::string path) {
+	SDL_Rect tempSRC{ 0,0,50,50 };
+	m_sprite = new Sprite();
+	m_sprite->Init(path, geometry, tempSRC);
 }

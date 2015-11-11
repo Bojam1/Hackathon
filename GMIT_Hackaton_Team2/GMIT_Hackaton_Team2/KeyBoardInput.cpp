@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "KeyboardInput.h"
 
-
 bool KeyBoardInput::instanceFlag = false;
 KeyBoardInput* KeyBoardInput::instance = NULL;
 
