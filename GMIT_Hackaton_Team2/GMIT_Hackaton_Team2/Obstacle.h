@@ -15,12 +15,12 @@ class Obstacle
 public:
 	Obstacle();
 	Obstacle(SDL_Rect, b2World*, string );
+	b2Body* myBody;
 	Obstacle(SDL_Rect, string);
 	// Public member functions
 	void Draw();
 	//SDL_Rect getRectangle();
 private:
-	b2Body* myBody;
 	b2BodyDef myBodyDef;
 	b2FixtureDef myBodyFixtureDef;
 	Sprite sprite;

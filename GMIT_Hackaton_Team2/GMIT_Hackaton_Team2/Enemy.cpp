@@ -9,7 +9,6 @@ Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height) :Col
 	geometry.h = height;
 
 	//Define a b2body
-	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position = b2Vec2(position.x, position.y);
 	bodyDef.userData = this;

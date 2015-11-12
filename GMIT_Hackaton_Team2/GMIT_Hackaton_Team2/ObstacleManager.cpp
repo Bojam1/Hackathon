@@ -13,7 +13,7 @@ void ObstacleManager::Init(b2World * pWorld, SDL_Renderer * gRenderer)
 
 void ObstacleManager::Draw()
 {
-	for each  (Obstacle obstacle in obstacles ) {
+	for each  (Obstacle obstacle in obstacles) {
 
 		obstacle.Draw();
 	}
@@ -47,7 +47,7 @@ ObstacleManager * ObstacleManager::GetInstance()
 
 void ObstacleManager::addObstacle(SDL_Rect pRect, b2World * world, string path)
 {
-	Obstacle temp(pRect, world,path);
+	Obstacle temp(pRect, world, path);
 
 	obstacles.push_back(temp);
 }

@@ -2,7 +2,7 @@
 #include "Projectile.h"
 #include "SDL\include\SDL2_gfxPrimitives.h"
 
-Projectile::Projectile(b2World &world, b2Vec2 position, b2Vec2 direction) : origin_(position), direction_(direction)
+Projectile::Projectile(b2World &world, b2Vec2 position, b2Vec2 direction) : origin_(position), direction_(direction), alive_(true)
 {
 	geometry_.x = position.x;
 	geometry_.y = position.y;
@@ -55,11 +55,6 @@ void Projectile::Update()
 
 	boxBody_->SetLinearVelocity(movement);
 	
-	//b2Vec2 cur = boxBody_->GetPosition();
-	//cur += movement;
-	//
-	//boxBody_->SetTransform(cur, boxBody_->GetAngle());
-
 	geometry_.x = boxBody_->GetPosition().x;
 	geometry_.y = boxBody_->GetPosition().y;
 
@@ -76,6 +71,16 @@ void Projectile::Init(std::string path)
 	SDL_Rect tempSRC{ 0, 0, SIZE, SIZE };
 	sprite_ = new Sprite();
 	sprite_->Init(path, geometry_, tempSRC);
+}
+
+bool Projectile::isAlive() const
+{
+	return alive_;
+}
+
+bool Projectile::operator=(Projectile other)
+{
+	return alive_ == other.isAlive();
 }
 
 void Projectile::onBeginContact(CollisionResponder * other)

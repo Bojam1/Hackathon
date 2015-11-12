@@ -22,6 +22,8 @@ public:
 
 	SDL_Rect getRectangle();
 	b2Body* getBody();
+	b2Vec2 getPosition();
+	bool u, d, l, r;
 
 private:
 	SDL_Rect myRect;
@@ -35,6 +37,8 @@ private:
 	Sprite playerSprite;
 
 	bool canJump;
+	const int MAX_AMMO;
+	unsigned int ammo;
 };
 
 #endif

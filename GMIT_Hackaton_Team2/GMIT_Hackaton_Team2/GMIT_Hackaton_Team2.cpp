@@ -12,8 +12,10 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Level.h"
+#include "Door.h"
 #include "MyContactListener.h"
 #include "Projectile.h"
+#include "Bullets.h"
 
 #include <ctime>
 
@@ -30,7 +32,8 @@ Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
 Enemy* enemy;
-Projectile* p;
+Door door;
+Bullets* bullets;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -63,6 +66,9 @@ void UpdateGame();
 bool UpdateMenu(SDL_Event e);
 void Reset();
 void ClearPointers();
+void CheckDoorCollisions();
+void CheckFiring();
+MyContactListener myContactListenerInstance;
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -76,9 +82,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Box2D
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	const b2Vec2 GRAVITY = b2Vec2(0, 1);
-	b2World* m_world = new b2World(GRAVITY);
-	MyContactListener myContactListenerInstance;
-	m_world->SetContactListener(&myContactListenerInstance);
 	const float box2D_timestep = 1.0f / 60.0f;
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
@@ -86,8 +89,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Fixed timestep
 	accumulator = 0;
 
-	enemy = new Enemy(*m_world, b2Vec2(50, 100), 50, 50);
-	p = new Projectile(*m_world, b2Vec2(100, 100), b2Vec2(1, 0));
+	//Fire control
+	enemy = new Enemy(*world, b2Vec2(50, 100), 50, 50);
+	bullets = new Bullets(*world);
 	//SDL
 #pragma region SDL STUFF
 	//Initialize SDL
@@ -113,9 +117,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			bool quit = false;
 			Init();
-
-
-
 
 			SDL_Event e;
 			while (!quit)
@@ -148,15 +149,15 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 					DrawGame();
-					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);					
+					world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					break;
 				}//end switch
 
-				 // Escape button
-				if (inputHandler.CheckInput(SDLK_ESCAPE, e))//::GetInstance()->isKeyPressed(SDLK_ESCAPE))
-				{
-					quit = true;
-				}
+// Escape button
+if (inputHandler.CheckInput(SDLK_ESCAPE, e))//::GetInstance()->isKeyPressed(SDLK_ESCAPE))
+{
+	quit = true;
+}
 
 			}//end while wuit
 		}//end else
@@ -168,6 +169,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void Init()
 {
+	door = Door();
 	enemy->Init("Assets/enemy.png");
 
 	player.Init(myRect, world);
@@ -181,18 +183,17 @@ void Init()
 	playButton.Init(destination, "Assets/PlayButton.png");
 	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 * 3 - 59, 323, 118 };
 	exitButton.Init(destination, "Assets/ExitButton.png");
-	p->Init("Assets/projectile.png");
+	world->SetContactListener(&myContactListenerInstance);
 }
 void DrawGame()
 {
 	Renderer::GetInstance()->ClearRenderer();
-	
-	
+
+
 	/*Call Darw on objects here*/
 	ObstacleManager::GetInstance()->Draw();
 	player.Draw();
 	enemy->Draw();
-	p->Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -233,7 +234,12 @@ void UpdateGame()
 	enemy->Update();
 	player.Move(inputHandler);
 	player.Update();
-	p->Update();
+
+	CheckFiring();
+
+
+	bullets->Update();
+
 	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()
@@ -247,3 +253,48 @@ void ClearPointers()
 	delete backGroundImage;
 }
 
+void CheckDoorCollisions()
+{
+	/*if (door.CheckBottomDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel(door.LoadRoom(), world);
+	}
+	if (door.CheckLeftDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel(door.LoadRoom(), world);
+	}
+
+	if (door.CheckRightDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel(door.LoadRoom(), world);
+	}*/
+
+	if (door.CheckTopDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel("Level2.txt", world);
+	}
+}
+
+void CheckFiring()
+{
+	if (player.u)
+	{
+		bullets->Fire(player.getPosition() + b2Vec2(0, -10), b2Vec2(0, -1));
+	}
+
+	if (player.d)
+	{
+		bullets->Fire(player.getPosition() + b2Vec2(0, 10), b2Vec2(0, 1));
+	}
+
+	if (player.l)
+	{
+		bullets->Fire(player.getPosition() + b2Vec2(-10, 0), b2Vec2(-1, 0));
+	}
+
+	if (player.r)
+	{
+		bullets->Fire(player.getPosition() + b2Vec2(10, 0), b2Vec2(1, 0));
+	}
+
+}

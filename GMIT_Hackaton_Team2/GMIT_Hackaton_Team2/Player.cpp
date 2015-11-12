@@ -3,9 +3,8 @@
 #include <SDL_image.h>
 
 // Constructor
-Player::Player()
+Player::Player() : MAX_AMMO(10), ammo(MAX_AMMO)
 {
-
 }
 
 void Player::Init(SDL_Rect pRect, b2World *pWorld)
@@ -16,7 +15,7 @@ void Player::Init(SDL_Rect pRect, b2World *pWorld)
 	myBodyDef.type = b2_dynamicBody;
 	myBodyDef.position.Set(pRect.x, pRect.y);
 	myBody = pWorld->CreateBody(&myBodyDef);
-
+	myBodyDef.userData = this;
 	myShape.SetAsBox(pRect.w / 2, pRect.h / 2);
 
 	myBodyFixtureDef.shape = &myShape;
@@ -100,7 +99,11 @@ void Player::Move(InputHandler & input)
 		myBody->SetLinearVelocity(b2Vec2(0, 0));
 	}
 
-
+	//Fire control
+	l = keys[SDL_SCANCODE_LEFT];
+	r = keys[SDL_SCANCODE_RIGHT];
+	u = keys[SDL_SCANCODE_UP];
+	d = keys[SDL_SCANCODE_DOWN];
 }
 
 void Player::Draw()
@@ -116,4 +119,9 @@ SDL_Rect Player::getRectangle()
 b2Body *Player::getBody()
 {
 	return myBody;
+}
+
+b2Vec2 Player::getPosition()
+{
+	return myBody->GetPosition();
 }

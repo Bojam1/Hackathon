@@ -12,6 +12,7 @@ class Enemy : public CollisionResponder {
 private:
 	SDL_Rect geometry;
 	b2Body* boxBody;
+	b2BodyDef bodyDef;
 	int speed;
 	enum Direction { Up, Down, Left, Right };
 	Direction m_dir;

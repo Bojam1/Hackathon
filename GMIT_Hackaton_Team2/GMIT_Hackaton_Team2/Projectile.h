@@ -14,8 +14,10 @@ private:
 	b2Vec2 direction_;
 
 	Sprite* sprite_;
-	
+	bool alive_;
+
 	const int SIZE = 20;
+
 
 public:
 	Projectile(b2World &world, b2Vec2 position, b2Vec2 direction);
@@ -26,6 +28,9 @@ public:
 	void Update();
 	void Draw();
 	void Init(std::string path);
+	bool isAlive() const;
+
+	bool operator=(Projectile other);
 
 	//needed to override the contact classes in the collision reponder
 	virtual void onBeginContact(CollisionResponder* other) override;
