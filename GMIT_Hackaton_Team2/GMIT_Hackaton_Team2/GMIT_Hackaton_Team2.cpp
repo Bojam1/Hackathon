@@ -20,7 +20,7 @@
 const int SCREEN_WIDTH = 1248;			//SDL
 const int SCREEN_HEIGHT = 704;			//SDL
 
-										//gamestates
+//320										//gamestates
 const int MENU = 0, PLAY = 1, PAUSE = 2, GAMEOVER = 3;
 int gameState;
 
@@ -31,6 +31,7 @@ Button exitButton;
 Door door;
 FollowEnemy* enemy;
 MyContactListener myContactListenerInstance;
+
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -60,8 +61,9 @@ bool UpdateMenu(SDL_Event e);
 void Reset();
 void ClearPointers();
 void CheckDoorCollisions();
+void SetPlayerPosition();
 
-
+bool wentThroughTopDoor, wentThroughBottomDoor, wentThroughRightDoor, wentThroughLeftDoor;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	B2_NOT_USED(argc);
@@ -150,7 +152,9 @@ if (inputHandler.CheckInput(SDLK_ESCAPE, e))//::GetInstance()->isKeyPressed(SDLK
 void Init()
 {
 	door = Door();
+	door.LoadRectangle();
 	enemy->Init("Assets/enemy.png");
+	wentThroughBottomDoor = wentThroughLeftDoor = wentThroughRightDoor = wentThroughTopDoor = false;
 	player.Init(myRect, world);
 	Level::LoadLevel("Level1.txt", world);
 	gameState = MENU;
@@ -217,6 +221,11 @@ void UpdateGame()
 		player.Add_SubHealth(-1);
 		enemy->setTakePlayershealth(false);
 	}
+	//cout << "Player X Position = " + player.getRectangle().x << endl;
+	//cout << "Player Y Position = " + player.getRectangle().y << endl;
+	//cout << "Door X Position = " + door.GetTopDoorRect().x << endl;
+	//cout << "Door Y Position = " + door.GetTopDoorRect().y << endl;
+	CheckDoorCollisions();
 	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()
@@ -231,22 +240,75 @@ void ClearPointers()
 
 void CheckDoorCollisions()
 {
-	/*if (door.CheckBottomDoorCollisions(player.getRectangle()))
+	if (door.CheckBottomDoorCollisions(&player.getRectangle()))
 	{
-		Level::LoadLevel(door.LoadRoom(), world);
+		if (wentThroughBottomDoor == false)
+		{
+			ObstacleManager::GetInstance()->ResetRoom(world);
+			door.LoadRoom();
+			Level::LoadLevel(door.filePath, world);
+			wentThroughBottomDoor = true;
+			SetPlayerPosition();
+		}
 	}
-	if (door.CheckLeftDoorCollisions(player.getRectangle()))
+	if (door.CheckLeftDoorCollisions(&player.getRectangle()))
 	{
-		Level::LoadLevel(door.LoadRoom(), world);
+		if (wentThroughLeftDoor == false)
+		{
+			ObstacleManager::GetInstance()->ResetRoom(world);
+			door.LoadRoom();
+			Level::LoadLevel(door.filePath, world);
+			wentThroughLeftDoor = true;
+			SetPlayerPosition();
+		}
+	}
+	if (door.CheckRightDoorCollisions(&player.getRectangle()))
+	{
+		if (wentThroughRightDoor == false)
+		{
+			ObstacleManager::GetInstance()->ResetRoom(world);
+			door.LoadRoom();
+			Level::LoadLevel(door.filePath, world);
+			wentThroughRightDoor = true;
+			SetPlayerPosition();
+		}
+	}
+	if (door.CheckTopDoorCollisions(&player.getRectangle()))
+	{
+		if (wentThroughTopDoor == false)
+		{
+			ObstacleManager::GetInstance()->ResetRoom(world);
+			door.LoadRoom();
+			Level::LoadLevel(door.filePath, world);
+			wentThroughTopDoor = true;
+			SetPlayerPosition();
+		}
+	}
+}
+
+void SetPlayerPosition()
+{
+	if (wentThroughBottomDoor)
+	{
+		player.getBody()->SetTransform(b2Vec2(615, 80), player.getBody()->GetAngle());
+		wentThroughBottomDoor = false;
 	}
 
-	if (door.CheckRightDoorCollisions(player.getRectangle()))
+	if (wentThroughLeftDoor)
 	{
-		Level::LoadLevel(door.LoadRoom(), world);
-	}*/
+		player.getBody()->SetTransform(b2Vec2(1170, 325), player.getBody()->GetAngle());
+		wentThroughLeftDoor = false;
+	}
 
-	if (door.CheckTopDoorCollisions(player.getRectangle()))
+	if (wentThroughRightDoor)
 	{
-		Level::LoadLevel("Level2.txt", world);
+		player.getBody()->SetTransform(b2Vec2(70, 325), player.getBody()->GetAngle());
+		wentThroughRightDoor = false;
+	}
+	
+	if (wentThroughTopDoor)
+	{
+		player.getBody()->SetTransform(b2Vec2(615, 620), player.getBody()->GetAngle());
+		wentThroughTopDoor = false;
 	}
 }

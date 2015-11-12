@@ -2,7 +2,7 @@
 #define OBSTACLEMANGER_H
 
 #include <iostream> 
-#include <SDL.h>			//SDL
+#include <SDL.h>
 #include <stdio.h>
 #include <list>
 #include "Obstacle.h"
@@ -19,6 +19,7 @@ public:
 	void Draw();
 	void Update();
 	void Reset(SDL_Rect);
+	void ResetRoom(b2World * world);
 	static ObstacleManager* GetInstance();
 	static void addObstacle(SDL_Rect pRect, b2World* world, string path);
 	static void addfloor(SDL_Rect pRect, string path);

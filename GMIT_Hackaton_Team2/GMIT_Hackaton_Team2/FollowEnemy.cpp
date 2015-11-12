@@ -10,25 +10,25 @@ FollowEnemy::~FollowEnemy() {
 }
 
 void FollowEnemy::Update(b2Vec2 target) {
-	//geometry.x = boxBody->GetPosition().x;
-	//geometry.y = boxBody->GetPosition().y;
+	geometry.x = boxBody->GetPosition().x;
+	geometry.y = boxBody->GetPosition().y;
 
-	///*if (target.x > geometry.x)
-	//{
-	//	Move(Right);
-	//}
-	//else if (target.x < geometry.x) 
-	//{
-	//	Move(Left);
-	//}
-	//if (target.y > geometry.y)
-	//{
-	//	Move(Down);
-	//}
-	//else if (target.y < geometry.y)
-	//{
-	//	Move(Up);
-	//}*/
+	if (target.x > geometry.x)
+	{
+		Move(Right);
+	}
+	else if (target.x < geometry.x) 
+	{
+		Move(Left);
+	}
+	if (target.y > geometry.y)
+	{
+		Move(Down);
+	}
+	else if (target.y < geometry.y)
+	{
+		Move(Up);
+	}
 
-	//m_sprite->SetPosition(boxBody->GetPosition().x, boxBody->GetPosition().y);
+	m_sprite->SetPosition(boxBody->GetPosition().x, boxBody->GetPosition().y);
 }
