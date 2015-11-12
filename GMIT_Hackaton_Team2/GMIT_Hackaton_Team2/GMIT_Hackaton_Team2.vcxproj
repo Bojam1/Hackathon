@@ -118,14 +118,25 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\bottom.png" />
+    <Image Include="Assets\bot_wall_bottomhalf.png" />
+    <Image Include="Assets\bot_wall_tophalf.png" />
     <Image Include="Assets\corner.png" />
     <Image Include="Assets\corner_bot_left.png" />
+    <Image Include="Assets\door_b_l.png" />
+    <Image Include="Assets\door_b_r.png" />
+    <Image Include="Assets\door_t_l.png" />
+    <Image Include="Assets\door_t_r.png" />
     <Image Include="Assets\ExitButton.png" />
     <Image Include="Assets\left.png" />
+    <Image Include="Assets\left_wall_bottomhalf.png" />
+    <Image Include="Assets\left_wall_tophalf.png" />
     <Image Include="Assets\menu.png" />
     <Image Include="Assets\Play.png" />
     <Image Include="Assets\PlayButton.png" />
     <Image Include="Assets\right.png" />
+    <Image Include="Assets\right_wall_bottomhalf.png" />
+    <Image Include="Assets\right_wall_tophalf.png" />
+    <Image Include="Assets\top left corner.png" />
     <Image Include="Assets\top_wall_bottomhalf.png" />
     <Image Include="Assets\top_wall_tophalf.png" />
   </ItemGroup>

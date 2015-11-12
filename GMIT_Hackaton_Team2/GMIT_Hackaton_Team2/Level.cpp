@@ -25,40 +25,73 @@ void Level::LoadLevel(std::string name, b2World * world)
 			char c = (char)map[y][x];
 			//temp.setPosition((sf::Vector2f(x * SCALE, y * SCALE)));
 
-			if (c == 'F')
+			if (c == 'B')
 			{
 				//temp.setTextureRect(sf::IntRect(1 * SCALE, 0, SCALE, SCALE));
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world,"Assets/bottom.png" );
+				ObstacleManager::addObstacle(temp, world,"Assets/bot_wall_tophalf.png" );
 
+
+			}
+			if (c == 'b')
+			{
+				//temp.setTextureRect(sf::IntRect(1 * SCALE, 0, SCALE, SCALE));
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/bot_wall_bottomhalf.png");
+
+
+			}
+			if (c == 'L')
+			{
+				//temp.setTextureRect(sf::IntRect(0 * SCALE, 0, SCALE, SCALE));
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/left_wall_tophalf.png");
 
 			}
 			if (c == 'l')
 			{
 				//temp.setTextureRect(sf::IntRect(0 * SCALE, 0, SCALE, SCALE));
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/left.png");
+				ObstacleManager::addObstacle(temp, world, "Assets/left_wall_bottomhalf.png");
 
 			}
 			if (c == 'r')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/right.png");
+				ObstacleManager::addObstacle(temp, world, "Assets/right_wall_bottomhalf.png");
 
 			}
 			if (c == 'R')
 			{
 				
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/corner.png");
+				ObstacleManager::addObstacle(temp, world, "Assets/right_wall_tophalf.png");
 
 			}
-			if (c == 'L')
+			if (c == '1')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/corner_bot_left.png");
+				ObstacleManager::addObstacle(temp, world, "Assets/door_t_l.png");
+			}
+			if (c == '2')
+			{
+
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/door_t_r.png");
+			}
+			if (c == '3')
+			{
+
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/door_b_l.png");
+			}
+			if (c == '4')
+			{
+
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addObstacle(temp, world, "Assets/door_b_r.png");
 			}
 			if (c == 't')
 			{
