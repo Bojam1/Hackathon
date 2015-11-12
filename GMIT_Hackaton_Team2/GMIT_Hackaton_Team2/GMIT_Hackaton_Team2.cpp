@@ -8,8 +8,10 @@
 #include "Renderer.h"
 #include "Sprite.h"
 #include "InputHandler.h"
+#include "ObstacleManager.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Level.h"
 #include "MyContactListener.h"
 
 //Screen dimension constants
@@ -125,8 +127,11 @@ int _tmain(int argc, _TCHAR* argv[])
 					break;
 				case PLAY:
 					UpdateGame();
-					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					DrawGame();
+<<<<<<< HEAD
+=======
+					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
+>>>>>>> 11b5694c5473d376afe998e8898fff4424d8450a
 					
 					break;
 				}//end switch
@@ -147,8 +152,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void Init()
 {
+<<<<<<< HEAD
 	enemy->Init("Assets/enemy.png");
+=======
+	
+>>>>>>> 11b5694c5473d376afe998e8898fff4424d8450a
 	player.Init(myRect, world);
+	Level::LoadLevel("Level1.txt", world);
 	gameState = MENU;
 	backGroundImage = new Sprite();
 	SDL_Rect destination = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -162,9 +172,15 @@ void Init()
 void DrawGame()
 {
 	Renderer::GetInstance()->ClearRenderer();
-	player.Draw();
+	
+	
 	/*Call Darw on objects here*/
+<<<<<<< HEAD
 	enemy->Draw();
+=======
+	ObstacleManager::GetInstance()->Draw();
+	player.Draw();
+>>>>>>> 11b5694c5473d376afe998e8898fff4424d8450a
 
 	Renderer::GetInstance()->RenderScreen();
 }

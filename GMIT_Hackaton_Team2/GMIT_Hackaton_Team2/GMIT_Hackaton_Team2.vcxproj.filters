@@ -1,113 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Artwork">
-      <UniqueIdentifier>{a7957f0c-8a3c-4cf8-aea9-8abd6e5db703}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CollisionResponder.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="MyContactListener.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\ExitButton.png" />
+    <Image Include="Assets\menu.png" />
+    <Image Include="Assets\Play.png" />
+    <Image Include="Assets\PlayButton.png" />
+    <Image Include="Assets\bottom.png" />
+    <Image Include="Assets\corner.png" />
+    <Image Include="Assets\corner_bot_left.png" />
+    <Image Include="Assets\left.png" />
+    <Image Include="Assets\right.png" />
+    <Image Include="Assets\top_wall_bottomhalf.png" />
+    <Image Include="Assets\top_wall_tophalf.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.h">
-=======
-<<<<<<< HEAD
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionResponder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyContactListener.h">
-=======
-    <ClInclude Include="Button.h">
->>>>>>> refs/remotes/origin/master
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
->>>>>>> 9cd67728e441d991d5fbf2ce81d15dea80d69247
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GMIT_Hackaton_Team2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-=======
-<<<<<<< HEAD
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-=======
-    <ClCompile Include="Button.cpp">
->>>>>>> refs/remotes/origin/master
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\ExitButton.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\menu.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\Play.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\PlayButton.png">
-      <Filter>Artwork</Filter>
-    </Image>
->>>>>>> 9cd67728e441d991d5fbf2ce81d15dea80d69247
+    <Text Include="Level1.txt" />
   </ItemGroup>
 </Project>

@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="Level1.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,8 @@
     <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Renderer.h" />
@@ -102,6 +105,8 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -112,10 +117,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\bottom.png" />
+    <Image Include="Assets\corner.png" />
+    <Image Include="Assets\corner_bot_left.png" />
     <Image Include="Assets\ExitButton.png" />
+    <Image Include="Assets\left.png" />
     <Image Include="Assets\menu.png" />
     <Image Include="Assets\Play.png" />
     <Image Include="Assets\PlayButton.png" />
+    <Image Include="Assets\right.png" />
+    <Image Include="Assets\top_wall_bottomhalf.png" />
+    <Image Include="Assets\top_wall_tophalf.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
