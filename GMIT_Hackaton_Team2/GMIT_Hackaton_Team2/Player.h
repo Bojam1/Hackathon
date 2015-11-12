@@ -14,14 +14,14 @@ class Player : public CollisionResponder
 {
 public:
 	Player();
-
+	SDL_Rect gSpriteClips[8];
 	void Init(SDL_Rect, b2World*);
 	bool Update();
 	void Draw();
 	void Move(InputHandler & input);
 	void Animate();
 	void Add_SubHealth(int amount);
-
+	int frame;
 	SDL_Rect getRectangle();
 	b2Body* getBody();
 	b2Vec2 getPos();

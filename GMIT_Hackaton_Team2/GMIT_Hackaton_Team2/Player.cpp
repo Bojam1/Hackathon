@@ -27,23 +27,77 @@ void Player::Init(SDL_Rect pRect, b2World *pWorld)
 
 	source = { 0, 0, 32, 64 };
 
-	playerSprite.Init("Assets/leftMovement.png", pRect, source);
+	playerSprite.Init("Assets/rightAnimation.png", pRect, source);
 	playerSprite.SetOffset(16, 32);
 
 	myBodyDef.userData = this;
 
 	canJump = true;
+	//Set sprite clips
+	gSpriteClips[0].x = 0;
+	gSpriteClips[0].y = 0;
+	gSpriteClips[0].w = 60;
+	gSpriteClips[0].h = 66;
+
+	gSpriteClips[1].x = 60;
+	gSpriteClips[1].y = 0;
+	gSpriteClips[1].w = 60;
+	gSpriteClips[1].h = 66;
+
+	gSpriteClips[2].x = 120;
+	gSpriteClips[2].y = 0;
+	gSpriteClips[2].w = 60;
+	gSpriteClips[2].h = 66;
+
+	gSpriteClips[3].x = 180;
+	gSpriteClips[3].y = 0;
+	gSpriteClips[3].w = 60;
+	gSpriteClips[3].h = 66;
+
+	gSpriteClips[4].x = 240;
+	gSpriteClips[4].y = 0;
+	gSpriteClips[4].w = 60;
+	gSpriteClips[4].h = 66;
+
+	gSpriteClips[5].x = 300;
+	gSpriteClips[5].y = 0;
+	gSpriteClips[5].w = 60;
+	gSpriteClips[5].h = 66;
+
+	gSpriteClips[6].x = 360;
+	gSpriteClips[6].y = 0;
+	gSpriteClips[6].w = 60;
+	gSpriteClips[6].h = 66;
+
+	gSpriteClips[7].x = 420;
+	gSpriteClips[7].y = 0;
+	gSpriteClips[7].w = 60;
+	gSpriteClips[7].h = 66;
+
+
+	frame = 0;
+
+
 }
 
 //Doesnt work... Oh well... Who really cares?
 void Player::Animate()
 {
-	spriteOffset += 32;
+	//Current animation frame
 
-	if (spriteOffset > 96)
-		spriteOffset = 32;
 
-	source = { 0,0, spriteOffset, 64 };
+	//Render current frame
+	SDL_Rect currentClip = gSpriteClips[frame / 7];
+	playerSprite.SetSourceRect(currentClip);
+
+	++frame;
+
+
+	if (frame / 7 > 7)
+	{
+		frame = 0;
+	}
+	
 }
 
 bool Player::Update()
@@ -77,7 +131,7 @@ void Player::Move(InputHandler & input)
 	if (keys[SDL_SCANCODE_A]) {
 		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x - 0.75, myBody->GetPosition().y), 0);
 		//myBody->SetLinearVelocity(b2Vec2(-2, 0));
-		Animate();
+		//Animate();
 		myBody->ApplyLinearImpulse(b2Vec2(-2, 0), b2Vec2(0, 0), true);
 	}
 
@@ -110,6 +164,7 @@ void Player::Move(InputHandler & input)
 void Player::Draw()
 {
 	playerSprite.Draw();
+	Animate();
 }
 
 void Player::Add_SubHealth(int amount) {

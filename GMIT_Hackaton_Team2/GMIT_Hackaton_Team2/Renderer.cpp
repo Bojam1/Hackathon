@@ -24,7 +24,7 @@ Renderer* Renderer::GetInstance()
 
 bool Renderer::Init(SDL_Window* window ,int screen_Width, int screen_Height){
 	//Create Renderer for the Window
-	gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	SCREEN_WIDTH = screen_Width;
 	SCREEN_HEIGHT = screen_Height;
 	if (gRenderer == NULL)

@@ -45,7 +45,6 @@ void Door::LoadRoom()
 	string num = to_string(number);
 	roomName += num;
 	roomName += text;
-	//roomName.erase(5, 1);
 	filePath = roomName;
 	roomName = "";
 

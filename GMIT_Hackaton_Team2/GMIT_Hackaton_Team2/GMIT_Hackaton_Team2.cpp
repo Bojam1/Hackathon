@@ -240,48 +240,64 @@ void ClearPointers()
 
 void CheckDoorCollisions()
 {
-	if (door.CheckBottomDoorCollisions(&player.getRectangle()))
+
+	if (player.getPos().y > 680)
 	{
-		if (wentThroughBottomDoor == false)
+		if (door.CheckBottomDoorCollisions(&player.getRectangle()))
 		{
-			ObstacleManager::GetInstance()->ResetRoom(world);
-			door.LoadRoom();
-			Level::LoadLevel(door.filePath, world);
-			wentThroughBottomDoor = true;
-			SetPlayerPosition();
+			if (wentThroughBottomDoor == false)
+			{
+				ObstacleManager::GetInstance()->ResetRoom(world);
+				door.LoadRoom();
+				Level::LoadLevel(door.filePath, world);
+				wentThroughBottomDoor = true;
+				SetPlayerPosition();
+			}
 		}
 	}
-	if (door.CheckLeftDoorCollisions(&player.getRectangle()))
+
+	if (player.getPos().x < 100)
 	{
-		if (wentThroughLeftDoor == false)
+		if (door.CheckLeftDoorCollisions(&player.getRectangle()))
 		{
-			ObstacleManager::GetInstance()->ResetRoom(world);
-			door.LoadRoom();
-			Level::LoadLevel(door.filePath, world);
-			wentThroughLeftDoor = true;
-			SetPlayerPosition();
+			if (wentThroughLeftDoor == false)
+			{
+				ObstacleManager::GetInstance()->ResetRoom(world);
+				door.LoadRoom();
+				Level::LoadLevel(door.filePath, world);
+				wentThroughLeftDoor = true;
+				SetPlayerPosition();
+			}
 		}
 	}
-	if (door.CheckRightDoorCollisions(&player.getRectangle()))
+
+	if (player.getPos().x > 1100)
 	{
-		if (wentThroughRightDoor == false)
+		if (door.CheckRightDoorCollisions(&player.getRectangle()))
 		{
-			ObstacleManager::GetInstance()->ResetRoom(world);
-			door.LoadRoom();
-			Level::LoadLevel(door.filePath, world);
-			wentThroughRightDoor = true;
-			SetPlayerPosition();
+			if (wentThroughRightDoor == false)
+			{
+				ObstacleManager::GetInstance()->ResetRoom(world);
+				door.LoadRoom();
+				Level::LoadLevel(door.filePath, world);
+				wentThroughRightDoor = true;
+				SetPlayerPosition();
+			}
 		}
 	}
-	if (door.CheckTopDoorCollisions(&player.getRectangle()))
+
+	if (player.getPos().y < 100)
 	{
-		if (wentThroughTopDoor == false)
+		if (door.CheckTopDoorCollisions(&player.getRectangle()))
 		{
-			ObstacleManager::GetInstance()->ResetRoom(world);
-			door.LoadRoom();
-			Level::LoadLevel(door.filePath, world);
-			wentThroughTopDoor = true;
-			SetPlayerPosition();
+			if (wentThroughTopDoor == false)
+			{
+				ObstacleManager::GetInstance()->ResetRoom(world);
+				door.LoadRoom();
+				Level::LoadLevel(door.filePath, world);
+				wentThroughTopDoor = true;
+				SetPlayerPosition();
+			}
 		}
 	}
 }
