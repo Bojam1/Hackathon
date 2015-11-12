@@ -221,6 +221,7 @@ void UpdateGame()
 	enemy->Update();
 	player.Move(inputHandler);
 	player.Update();
+
 	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()

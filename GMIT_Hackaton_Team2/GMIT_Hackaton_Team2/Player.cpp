@@ -11,7 +11,7 @@ Player::Player()
 void Player::Init(SDL_Rect pRect, b2World *pWorld)
 {
 	myRect = pRect;
-
+	spriteOffset = 32;
 	//myBodyDef.type = b2_staticBody;
 	myBodyDef.type = b2_dynamicBody;
 	myBodyDef.position.Set(pRect.x, pRect.y);
@@ -23,12 +23,23 @@ void Player::Init(SDL_Rect pRect, b2World *pWorld)
 	myBodyFixtureDef.friction = 100;
 	myBody->CreateFixture(&myBodyFixtureDef);
 
-	SDL_Rect source = { 0, 0, 32, 64 };
+	source = { 0, 0, 32, 64 };
 
-	playerSprite.Init("Assets/pablo-32x64.png", pRect, source);
+	playerSprite.Init("Assets/leftMovement.png", pRect, source);
 	playerSprite.SetOffset(16, 32);
 
 	canJump = true;
+}
+
+//Doesnt work... Oh well... Who really cares?
+void Player::Animate()
+{
+	spriteOffset += 32;
+
+	if (spriteOffset > 96)
+		spriteOffset = 32;
+
+	source = { 0,0, spriteOffset, 64 };
 }
 
 bool Player::Update()
@@ -60,19 +71,33 @@ void Player::Move(InputHandler & input)
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
 	if (keys[SDL_SCANCODE_A]) {
-		myBody->SetTransform(b2Vec2(myBody->GetPosition().x - 0.75, myBody->GetPosition().y), 0);
+		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x - 0.75, myBody->GetPosition().y), 0);
+		//myBody->SetLinearVelocity(b2Vec2(-2, 0));
+		Animate();
+		myBody->ApplyLinearImpulse(b2Vec2(-2, 0), b2Vec2(0, 0), true);
 	}
 
 	if (keys[SDL_SCANCODE_D]) {
-		myBody->SetTransform(b2Vec2(myBody->GetPosition().x + 0.75, myBody->GetPosition().y), 0);
+		//myBody->SetLinearVelocity(b2Vec2(2, 0));
+		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x + 0.75, myBody->GetPosition().y), 0);
+		myBody->ApplyLinearImpulse(b2Vec2(2, 0), b2Vec2(0, 0), true);
 	}
 
 	if (keys[SDL_SCANCODE_W]) {
-		myBody->SetTransform(b2Vec2(myBody->GetPosition().x, myBody->GetPosition().y - 0.75), 0);
+		//myBody->SetLinearVelocity(b2Vec2(0, -2));
+		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x, myBody->GetPosition().y - 0.75), 0);
+		myBody->ApplyLinearImpulse(b2Vec2(0, -2), b2Vec2(0, 0), true);
 	}
 
 	if (keys[SDL_SCANCODE_S]) {
-		myBody->SetTransform(b2Vec2(myBody->GetPosition().x, myBody->GetPosition().y + 0.75), 0);
+		//myBody->SetLinearVelocity(b2Vec2(0, 2));
+		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x, myBody->GetPosition().y + 0.75), 0);
+		myBody->ApplyLinearImpulse(b2Vec2(0, 2), b2Vec2(0, 0), true);
+	}
+
+	if (!keys[SDL_SCANCODE_D] && !keys[SDL_SCANCODE_A] && !keys[SDL_SCANCODE_W] && !keys[SDL_SCANCODE_S])
+	{
+		myBody->SetLinearVelocity(b2Vec2(0, 0));
 	}
 
 
