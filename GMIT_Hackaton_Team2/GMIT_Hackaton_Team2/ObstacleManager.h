@@ -19,6 +19,7 @@ public:
 	void Draw();
 	void Update();
 	void Reset(SDL_Rect);
+	void ResetRoom();
 	static ObstacleManager* GetInstance();
 	static void addObstacle(SDL_Rect pRect, b2World* world, string path);
 	~ObstacleManager()

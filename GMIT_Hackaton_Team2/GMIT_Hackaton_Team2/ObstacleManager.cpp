@@ -48,4 +48,14 @@ void ObstacleManager::addObstacle(SDL_Rect pRect, b2World * world, string path)
 	floor.push_back(temp);
 }
 
+void ObstacleManager::ResetRoom(b2World * world)
+{
+	for each  (Obstacle obstacle in floor) 
+	{
+		world->DestroyBody(obstacle.myBody);
+	}
+
+	floor.clear();
+}
+
 

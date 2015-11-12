@@ -71,13 +71,12 @@ void Level::LoadLevel(std::string name, b2World * world)
 			}
 			if (c == '1')
 			{
-
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
 				ObstacleManager::addObstacle(temp, world, "Assets/door_t_l.png");
 			}
 			if (c == '2')
 			{
-
+				
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
 				ObstacleManager::addObstacle(temp, world, "Assets/door_t_r.png");
 			}

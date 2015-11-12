@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Level.h"
+#include "Door.h"
 #include "MyContactListener.h"
 
 //Screen dimension constants
@@ -27,6 +28,7 @@ Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
 Enemy* enemy;
+Door door;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -55,6 +57,8 @@ void UpdateGame();
 bool UpdateMenu(SDL_Event e);
 void Reset();
 void ClearPointers();
+void CheckDoorCollisions();
+MyContactListener myContactListenerInstance;
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -68,14 +72,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Box2D
 	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	const b2Vec2 GRAVITY = b2Vec2(0, 1);
-	b2World* m_world = new b2World(GRAVITY);
-	MyContactListener myContactListenerInstance;
-	m_world->SetContactListener(&myContactListenerInstance);
 	const float box2D_timestep = 1.0f / 60.0f;
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
 
-	enemy = new Enemy(*m_world, b2Vec2(50, 100), 50, 50);
+	enemy = new Enemy(*world, b2Vec2(50, 100), 50, 50);
 
 	//SDL
 #pragma region SDL STUFF
@@ -133,11 +134,11 @@ int _tmain(int argc, _TCHAR* argv[])
 					break;
 				}//end switch
 
-				 // Escape button
-				if (inputHandler.CheckInput(SDLK_ESCAPE, e))//::GetInstance()->isKeyPressed(SDLK_ESCAPE))
-				{
-					quit = true;
-				}
+// Escape button
+if (inputHandler.CheckInput(SDLK_ESCAPE, e))//::GetInstance()->isKeyPressed(SDLK_ESCAPE))
+{
+	quit = true;
+}
 
 			}//end while wuit
 		}//end else
@@ -149,6 +150,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void Init()
 {
+	door = Door();
 	enemy->Init("Assets/enemy.png");
 	player.Init(myRect, world);
 	Level::LoadLevel("Level1.txt", world);
@@ -161,12 +163,13 @@ void Init()
 	playButton.Init(destination, "Assets/PlayButton.png");
 	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 * 3 - 59, 323, 118 };
 	exitButton.Init(destination, "Assets/ExitButton.png");
+	world->SetContactListener(&myContactListenerInstance);
 }
 void DrawGame()
 {
 	Renderer::GetInstance()->ClearRenderer();
-	
-	
+
+
 	/*Call Darw on objects here*/
 	enemy->Draw();
 	ObstacleManager::GetInstance()->Draw();
@@ -223,4 +226,27 @@ void ClearPointers()
 	delete world;
 	delete backGroundImage;
 }
+
+void CheckDoorCollisions()
+{
+	/*if (door.CheckBottomDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel(door.LoadRoom(), world);
+	}
+	if (door.CheckLeftDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel(door.LoadRoom(), world);
+	}
+
+	if (door.CheckRightDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel(door.LoadRoom(), world);
+	}*/
+
+	if (door.CheckTopDoorCollisions(player.getRectangle()))
+	{
+		Level::LoadLevel("Level2.txt", world);
+	}
+}
+
 
