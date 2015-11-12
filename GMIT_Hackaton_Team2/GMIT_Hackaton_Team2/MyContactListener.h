@@ -2,6 +2,7 @@
 #define _MYCONTACTLISTENER_H
 #include <Box2D\Dynamics\Contacts\b2Contact.h>
 #include "Enemy.h"
+#include "Player.h"
 
 class MyContactListener : public b2ContactListener
 {

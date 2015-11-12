@@ -7,8 +7,10 @@
 #include "InputHandler.h"
 #include "Renderer.h"
 #include "Sprite.h"
+#include "CollisionResponder.h"
+#include <MyContactListener.h>
 
-class Player
+class Player : public CollisionResponder
 {
 public:
 	Player();
@@ -17,13 +19,19 @@ public:
 	bool Update();
 	void Draw();
 	void Move(InputHandler & input);
-	void Jump();
 	void Animate();
+	void Add_SubHealth(int amount);
 
 	SDL_Rect getRectangle();
 	b2Body* getBody();
+	b2Vec2 getPos();
+
+	//needed to override the contact classes in the collision reponder
+	virtual void onBeginContact(CollisionResponder* other) override;
+	virtual void onEndContact(CollisionResponder* other) override;
 
 private:
+	int health;
 	SDL_Rect myRect;
 	SDL_Rect source;
 	int spriteOffset;

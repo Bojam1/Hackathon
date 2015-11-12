@@ -89,6 +89,7 @@
     <ClInclude Include="CollisionResponder.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FollowEnemy.h" />
     <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="InputHandler.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="FollowEnemy.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Obstacle.cpp" />

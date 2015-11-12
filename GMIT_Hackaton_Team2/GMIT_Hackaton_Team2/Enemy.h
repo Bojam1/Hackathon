@@ -1,15 +1,20 @@
-#ifndef _PLAYER_H
-#define _PLAYER_H
+#ifndef _ENEMY_H
+#define _ENEMY_H
 
 #include <Box2D/Box2D.h>
 #include <SDL.h>
 #include "Renderer.h"
 #include "CollisionResponder.h"
+#include <MyContactListener.h>
 #include "Sprite.h"
 
 
 class Enemy : public CollisionResponder {
-private:
+protected:
+	b2BodyDef bodyDef;
+	b2PolygonShape shape;
+	b2FixtureDef myBodyFixtureDef;
+	bool takePlayershealth = false;
 	SDL_Rect geometry;
 	b2Body* boxBody;
 	int speed;
@@ -27,6 +32,8 @@ public:
 	b2Vec2 GetPosition() const;
 	float GetHeight() const;
 	float GetWidth() const;
+	bool GetTakePlayershealth();
+	void setTakePlayershealth(bool b);
 	void Update();
 	void Draw();
 	void Init(std::string path);

@@ -14,6 +14,7 @@
 #include "Level.h"
 #include "Door.h"
 #include "MyContactListener.h"
+#include "FollowEnemy.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -27,8 +28,9 @@ InputHandler inputHandler = InputHandler();
 Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
-Enemy* enemy;
 Door door;
+FollowEnemy* enemy;
+MyContactListener myContactListenerInstance;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -58,7 +60,6 @@ bool UpdateMenu(SDL_Event e);
 void Reset();
 void ClearPointers();
 void CheckDoorCollisions();
-MyContactListener myContactListenerInstance;
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -68,15 +69,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	gameState = MENU;
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
-
-	//Box2D
-	SDL_Rect worldBounds = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-	const b2Vec2 GRAVITY = b2Vec2(0, 1);
+	
 	const float box2D_timestep = 1.0f / 60.0f;
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
 
-	enemy = new Enemy(*world, b2Vec2(50, 100), 50, 50);
+
+	enemy = new FollowEnemy(*world, b2Vec2(200, 100), 50, 50);
+
 
 	//SDL
 #pragma region SDL STUFF
@@ -129,8 +129,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				case PLAY:
 					UpdateGame();
 					DrawGame();
-
-					
+					world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					break;
 				}//end switch
 
@@ -152,7 +151,6 @@ void Init()
 {
 	door = Door();
 	enemy->Init("Assets/enemy.png");
-
 	player.Init(myRect, world);
 	Level::LoadLevel("Level1.txt", world);
 	gameState = MENU;
@@ -172,9 +170,10 @@ void DrawGame()
 
 
 	/*Call Darw on objects here*/
-	enemy->Draw();
+	
 	ObstacleManager::GetInstance()->Draw();
 	player.Draw();
+	enemy->Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -211,11 +210,13 @@ bool UpdateMenu(SDL_Event e)
 }
 void UpdateGame()
 {
-
-	enemy->Update();
+	enemy->Update(player.getPos());
 	player.Move(inputHandler);
 	player.Update();
-
+	if (enemy->GetTakePlayershealth()) {
+		player.Add_SubHealth(-1);
+		enemy->setTakePlayershealth(false);
+	}
 	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()
@@ -249,5 +250,3 @@ void CheckDoorCollisions()
 		Level::LoadLevel("Level2.txt", world);
 	}
 }
-
-

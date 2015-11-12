@@ -3,18 +3,20 @@
 #include <SDL_image.h>
 
 // Constructor
-Player::Player()
+Player::Player() :CollisionResponder()
 {
-
+	
 }
 
 void Player::Init(SDL_Rect pRect, b2World *pWorld)
 {
+	health = 5;
+
 	myRect = pRect;
 	spriteOffset = 32;
 	//myBodyDef.type = b2_staticBody;
 	myBodyDef.type = b2_dynamicBody;
-	myBodyDef.position.Set(pRect.x, pRect.y);
+	myBodyDef.position.Set(myRect.x + myRect.w*0.5f, myRect.y + myRect.h*0.5f);
 	myBody = pWorld->CreateBody(&myBodyDef);
 
 	myShape.SetAsBox(pRect.w / 2, pRect.h / 2);
@@ -27,6 +29,8 @@ void Player::Init(SDL_Rect pRect, b2World *pWorld)
 
 	playerSprite.Init("Assets/leftMovement.png", pRect, source);
 	playerSprite.SetOffset(16, 32);
+
+	myBodyDef.userData = this;
 
 	canJump = true;
 }
@@ -108,6 +112,10 @@ void Player::Draw()
 	playerSprite.Draw();
 }
 
+void Player::Add_SubHealth(int amount) {
+	health += amount;
+}
+
 SDL_Rect Player::getRectangle()
 {
 	return myRect;
@@ -116,4 +124,18 @@ SDL_Rect Player::getRectangle()
 b2Body *Player::getBody()
 {
 	return myBody;
+}
+
+void Player::onBeginContact(CollisionResponder* other) {
+	std::cout << "enemy Collide begin" << std::endl;
+	printf("++contact++");
+}
+
+void Player::onEndContact(CollisionResponder* other) {
+	std::cout << "enemy Collide end" << std::endl;
+	printf("++contact++");
+}
+
+b2Vec2 Player::getPos() {
+	return b2Vec2(myRect.x, myRect.y);
 }

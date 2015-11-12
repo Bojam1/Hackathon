@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+<<<<<<< Updated upstream
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -78,9 +79,42 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+=======
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
+    <ClCompile Include="FollowEnemy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CollisionResponder.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="MyContactListener.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleManager.h" />
+    <ClInclude Include="FollowEnemy.h" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\bottom.png">
