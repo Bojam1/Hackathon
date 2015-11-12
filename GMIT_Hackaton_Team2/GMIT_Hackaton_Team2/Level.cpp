@@ -81,97 +81,97 @@ void Level::LoadLevel(std::string name, b2World * world)
 			if (c == '1')
 			{
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/door_t_l.png");
+				ObstacleManager::addfloor(temp,  "Assets/door_t_l.png");
 			}
 			if (c == '2')
 			{
 				
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/door_t_r.png");
+				ObstacleManager::addfloor(temp,  "Assets/door_t_r.png");
 			}
 			if (c == '3')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/door_b_l.png");
+				ObstacleManager::addfloor(temp, "Assets/door_b_l.png");
 			}
 			if (c == '4')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/door_b_r.png");
+				ObstacleManager::addfloor(temp,  "Assets/door_b_r.png");
 			}
 			if (c == 'D')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/r_door_t_l.png");
+				ObstacleManager::addfloor(temp,  "Assets/r_door_t_l.png");
 			}
 			if (c == 'O')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/r_door_t_r.png");
+				ObstacleManager::addfloor(temp, "Assets/r_door_t_r.png");
 			}
 			if (c == 'd')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/r_door_b_l.png");
+				ObstacleManager::addfloor(temp,  "Assets/r_door_b_l.png");
 			}
 			if (c == 'o')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/r_door_b_r.png");
+				ObstacleManager::addfloor(temp,"Assets/r_door_b_r.png");
 			}
 			if (c == 'U')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/b_door_t_l.png");
+				ObstacleManager::addfloor(temp,  "Assets/b_door_t_l.png");
 			}
 			if (c == 'V')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/b_door_t_r.png");
+				ObstacleManager::addfloor(temp,  "Assets/b_door_t_r.png");
 			}
 			if (c == 'u')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/b_door_b_l.png");
+				ObstacleManager::addfloor(temp,  "Assets/b_door_b_l.png");
 			}
 			if (c == 'v')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/b_door_b_r.png");
+				ObstacleManager::addfloor(temp,  "Assets/b_door_b_r.png");
 			}
 			if (c == '5')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/l_door_t_l.png");
+				ObstacleManager::addfloor(temp, "Assets/l_door_t_l.png");
 			}
 			if (c == '6')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/l_door_t_r.png");
+				ObstacleManager::addfloor(temp, "Assets/l_door_t_r.png");
 			}
 			if (c == '7')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/l_door_b_l.png");
+				ObstacleManager::addfloor(temp, "Assets/l_door_b_l.png");
 			}
 			if (c == '8')
 			{
 
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
-				ObstacleManager::addObstacle(temp, world, "Assets/l_door_b_r.png");
+				ObstacleManager::addfloor(temp, "Assets/l_door_b_r.png");
 			}
 			if (c == 't')
 			{
