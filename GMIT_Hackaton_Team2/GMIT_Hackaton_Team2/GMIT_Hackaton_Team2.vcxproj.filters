@@ -149,6 +149,45 @@
     <Image Include="Assets\door_t_r.png">
       <Filter>Artwork</Filter>
     </Image>
+    <Image Include="Assets\b_door_b_l.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\b_door_b_r.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\b_door_t_l.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\b_door_t_r.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\l_door_b_l.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\l_door_b_r.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\l_door_t_l.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\l_door_t_r.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\r_door_b_l.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\r_door_b_r.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\r_door_t_l.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\r_door_t_r.png">
+      <Filter>Artwork</Filter>
+    </Image>
+    <Image Include="Assets\floor.png">
+      <Filter>Artwork</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

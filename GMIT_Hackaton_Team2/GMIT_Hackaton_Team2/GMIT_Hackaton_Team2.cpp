@@ -129,7 +129,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				case PLAY:
 					UpdateGame();
 					DrawGame();
-					//m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
+
 					
 					break;
 				}//end switch
@@ -152,6 +152,7 @@ void Init()
 {
 	door = Door();
 	enemy->Init("Assets/enemy.png");
+
 	player.Init(myRect, world);
 	Level::LoadLevel("Level1.txt", world);
 	gameState = MENU;
