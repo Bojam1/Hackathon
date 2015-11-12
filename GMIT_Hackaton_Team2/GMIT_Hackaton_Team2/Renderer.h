@@ -7,6 +7,7 @@
 #include <fstream>
 #include <SDL.h>
 
+
 static class Renderer
 {
 private:

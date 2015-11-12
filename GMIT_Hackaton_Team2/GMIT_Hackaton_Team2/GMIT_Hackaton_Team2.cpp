@@ -13,6 +13,9 @@
 #include "Enemy.h"
 #include "Level.h"
 #include "MyContactListener.h"
+#include "Projectile.h"
+
+#include <ctime>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -27,6 +30,7 @@ Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
 Enemy* enemy;
+Projectile* p;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
@@ -45,6 +49,10 @@ b2World *world = new b2World(gravity);
 float32 timeStep = 1.0f / 60.0f;
 int32 velocityIterations = 6;
 int32 positionIterations = 2;
+
+//Fixed dt
+time_t accumulator;
+clock_t timer;
 
 
 //methods
@@ -75,8 +83,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	const int vel_iterations = 6;
 	const int pos_iterations = 2;
 
-	enemy = new Enemy(*m_world, b2Vec2(50, 100), 50, 50);
+	//Fixed timestep
+	accumulator = 0;
 
+	enemy = new Enemy(*m_world, b2Vec2(50, 100), 50, 50);
+	p = new Projectile(*m_world, b2Vec2(100, 100), b2Vec2(1, 0));
 	//SDL
 #pragma region SDL STUFF
 	//Initialize SDL
@@ -126,14 +137,18 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					break;
 				case PLAY:
-					UpdateGame();
+					timer = clock() - timer;
+					accumulator += timer;
+
+					while (accumulator >= (timeStep * CLOCKS_PER_SEC))
+					{
+						accumulator -= timeStep * CLOCKS_PER_SEC;
+						UpdateGame();
+					}
+
+
 					DrawGame();
-
-					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
-
-
-					//m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
-					
+					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);					
 					break;
 				}//end switch
 
@@ -166,6 +181,7 @@ void Init()
 	playButton.Init(destination, "Assets/PlayButton.png");
 	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 * 3 - 59, 323, 118 };
 	exitButton.Init(destination, "Assets/ExitButton.png");
+	p->Init("Assets/projectile.png");
 }
 void DrawGame()
 {
@@ -173,9 +189,10 @@ void DrawGame()
 	
 	
 	/*Call Darw on objects here*/
-	enemy->Draw();
 	ObstacleManager::GetInstance()->Draw();
 	player.Draw();
+	enemy->Draw();
+	p->Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -202,6 +219,7 @@ bool UpdateMenu(SDL_Event e)
 			std::cout << "Mouse Button 1 (left) is pressed. x = " << mouse_x << ", y = " << mouse_y << std::endl;
 			if (playButton.IsClicked(mouse_x, mouse_y)) {
 				gameState = PLAY;
+				timer = clock();
 			}
 			else if (exitButton.IsClicked(mouse_x, mouse_y)) {
 				return true;
@@ -212,17 +230,17 @@ bool UpdateMenu(SDL_Event e)
 }
 void UpdateGame()
 {
-
 	enemy->Update();
 	player.Move(inputHandler);
 	player.Update();
-
+	p->Update();
 	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()
 {
 
 }
+
 void ClearPointers()
 {
 	delete world;
