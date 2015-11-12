@@ -179,6 +179,9 @@
     <Image Include="Assets\r_door_t_r.png">
       <Filter>Artwork</Filter>
     </Image>
+    <Image Include="Assets\floor.png">
+      <Filter>Artwork</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

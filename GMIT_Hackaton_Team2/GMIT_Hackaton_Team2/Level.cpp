@@ -2,6 +2,7 @@
 #include "stdafx.h"
 using namespace std;
 #include "Level.h"
+#include "Sprite.h"
 
 const int Level::SCALE = 32;
 const int Level::MAXLEVELS = 5;
@@ -15,22 +16,30 @@ Level::Level()
 
 void Level::LoadLevel(std::string name, b2World * world)
 {
+
 	std::vector<std::string> map = Level::LoadFromTextFile(name);
 	const int mapX = 41;
 	const int mapY = 23;
+	
+	SDL_Rect source = { 0, 0, 32, 32 };
+
 	for (int y = 0; y < mapY; y++)
 	{
 		for (int x = 0; x < mapX; x++)
 		{
 			char c = (char)map[y][x];
 			//temp.setPosition((sf::Vector2f(x * SCALE, y * SCALE)));
-
+			if (c == 'w')
+			{
+				//temp.setTextureRect(sf::IntRect(1 * SCALE, 0, SCALE, SCALE));
+				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
+				ObstacleManager::addfloor(temp, "Assets/floor.png");
+			}
 			if (c == 'B')
 			{
 				//temp.setTextureRect(sf::IntRect(1 * SCALE, 0, SCALE, SCALE));
 				SDL_Rect temp = { x*SCALE, y*SCALE, SCALE, SCALE };
 				ObstacleManager::addObstacle(temp, world,"Assets/bot_wall_tophalf.png" );
-
 
 			}
 			if (c == 'b')
@@ -198,3 +207,6 @@ vector<string> Level::LoadFromTextFile(string name)
 
 	return std::vector<std::string>();
 }
+
+
+

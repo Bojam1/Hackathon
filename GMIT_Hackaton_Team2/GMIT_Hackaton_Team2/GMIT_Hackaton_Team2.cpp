@@ -128,8 +128,11 @@ int _tmain(int argc, _TCHAR* argv[])
 				case PLAY:
 					UpdateGame();
 					DrawGame();
+
 					m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 
+
+					//m_world->Step(box2D_timestep, vel_iterations, pos_iterations);
 					
 					break;
 				}//end switch
@@ -152,7 +155,6 @@ void Init()
 {
 	enemy->Init("Assets/enemy.png");
 
-
 	player.Init(myRect, world);
 	Level::LoadLevel("Level1.txt", world);
 	gameState = MENU;
@@ -172,10 +174,8 @@ void DrawGame()
 	
 	/*Call Darw on objects here*/
 	enemy->Draw();
-
 	ObstacleManager::GetInstance()->Draw();
 	player.Draw();
-
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -216,6 +216,7 @@ void UpdateGame()
 	enemy->Update();
 	player.Move(inputHandler);
 	player.Update();
+
 	world->Step(timeStep, velocityIterations, positionIterations);
 }
 void Reset()

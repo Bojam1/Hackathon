@@ -15,6 +15,7 @@ class Obstacle
 public:
 	Obstacle();
 	Obstacle(SDL_Rect, b2World*, string );
+	Obstacle(SDL_Rect, string);
 	// Public member functions
 	void Draw();
 	//SDL_Rect getRectangle();

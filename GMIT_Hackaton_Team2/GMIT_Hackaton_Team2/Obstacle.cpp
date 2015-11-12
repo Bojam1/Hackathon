@@ -34,6 +34,15 @@ Obstacle::Obstacle(SDL_Rect pRect, b2World *wWorld, string path)
 	sprite.SetOffset(16, 16);
 }
 
+Obstacle::Obstacle(SDL_Rect pRect, string path)
+{
+	myRect = pRect;	
+	SDL_Rect source = { 0,0,32,32 };
+
+	sprite.Init(path, pRect, source);
+	sprite.SetOffset(16, 16);
+}
+
 void Obstacle::Draw()
 {
 	sprite.Draw();

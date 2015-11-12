@@ -131,6 +131,7 @@
     <Image Include="Assets\door_t_l.png" />
     <Image Include="Assets\door_t_r.png" />
     <Image Include="Assets\ExitButton.png" />
+    <Image Include="Assets\floor.png" />
     <Image Include="Assets\left.png" />
     <Image Include="Assets\left_wall_bottomhalf.png" />
     <Image Include="Assets\left_wall_tophalf.png" />

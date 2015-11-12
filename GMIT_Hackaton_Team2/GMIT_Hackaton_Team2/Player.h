@@ -18,13 +18,15 @@ public:
 	void Draw();
 	void Move(InputHandler & input);
 	void Jump();
+	void Animate();
 
 	SDL_Rect getRectangle();
 	b2Body* getBody();
 
 private:
 	SDL_Rect myRect;
-
+	SDL_Rect source;
+	int spriteOffset;
 	b2BodyDef myBodyDef;
 	b2Body* myBody;
 	b2PolygonShape myShape;

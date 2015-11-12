@@ -21,6 +21,7 @@ public:
 	void Reset(SDL_Rect);
 	static ObstacleManager* GetInstance();
 	static void addObstacle(SDL_Rect pRect, b2World* world, string path);
+	static void addfloor(SDL_Rect pRect, string path);
 	~ObstacleManager()
 	{
 		instanceFlag = false;
@@ -34,6 +35,7 @@ private:
 	static bool instanceFlag;
 	bool moveIndependantly;
 	static ObstacleManager* instance;
+	static std::vector<Obstacle> obstacles;
 	static std::vector<Obstacle> floor;
 };
 #endif

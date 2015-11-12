@@ -21,6 +21,6 @@ private:
 	static const int SCALE;//class variable
 	static int currentlevel;
 	static const int MAXLEVELS;
-
+	
 };
 #endif
