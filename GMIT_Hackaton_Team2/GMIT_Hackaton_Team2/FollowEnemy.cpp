@@ -1,8 +1,11 @@
 #include "stdafx.h"
 #include "FollowEnemy.h"
 
+FollowEnemy::FollowEnemy(){}
+
 FollowEnemy::FollowEnemy(b2World &world, b2Vec2 const &position, int width, int height) : Enemy(world,position,width,height){
 	speed = 1;
+	alive = true;
 }
 
 FollowEnemy::~FollowEnemy() {
@@ -31,4 +34,7 @@ void FollowEnemy::Update(b2Vec2 target) {
 	}
 
 	m_sprite->SetPosition(boxBody->GetPosition().x, boxBody->GetPosition().y);
+}
+bool FollowEnemy::Alive() {
+	return alive;
 }

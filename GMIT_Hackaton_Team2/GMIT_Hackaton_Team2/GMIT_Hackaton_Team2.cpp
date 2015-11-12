@@ -15,6 +15,7 @@
 #include "Door.h"
 #include "MyContactListener.h"
 #include "FollowEnemy.h"
+#include "EnemyManager.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1248;			//SDL
@@ -29,7 +30,6 @@ Sprite* backGroundImage;
 Button playButton;
 Button exitButton;
 Door door;
-FollowEnemy* enemy;
 MyContactListener myContactListenerInstance;
 
 
@@ -77,7 +77,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	const int pos_iterations = 2;
 
 
-	enemy = new FollowEnemy(*world, b2Vec2(200, 100), 50, 50);
 
 
 	//SDL
@@ -153,10 +152,10 @@ void Init()
 {
 	door = Door();
 	door.LoadRectangle();
-	enemy->Init("Assets/enemy.png");
 	wentThroughBottomDoor = wentThroughLeftDoor = wentThroughRightDoor = wentThroughTopDoor = false;
 	player.Init(myRect, world);
 	Level::LoadLevel("Level1.txt", world);
+	EnemyManager::LoadFromMap("Level1_enemies.txt", world);
 	gameState = MENU;
 	backGroundImage = new Sprite();
 	SDL_Rect destination = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -177,7 +176,8 @@ void DrawGame()
 	
 	ObstacleManager::GetInstance()->Draw();
 	player.Draw();
-	enemy->Draw();
+	//enemy->Draw();
+	EnemyManager::draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -214,13 +214,14 @@ bool UpdateMenu(SDL_Event e)
 }
 void UpdateGame()
 {
-	enemy->Update(player.getPos());
+	//enemy->Update(player.getPos());
 	player.Move(inputHandler);
 	player.Update();
-	if (enemy->GetTakePlayershealth()) {
+	/*if (enemy->GetTakePlayershealth()) {
 		player.Add_SubHealth(-1);
 		enemy->setTakePlayershealth(false);
-	}
+	}*/
+	EnemyManager::update(player.getPos());
 	//cout << "Player X Position = " + player.getRectangle().x << endl;
 	//cout << "Player Y Position = " + player.getRectangle().y << endl;
 	//cout << "Door X Position = " + door.GetTopDoorRect().x << endl;

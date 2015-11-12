@@ -9,9 +9,13 @@
 
 class FollowEnemy : public Enemy {
 public:
+	FollowEnemy();
 	FollowEnemy(b2World &world, b2Vec2 const &position, int width, int height);
 	~FollowEnemy();
 
 	void Update(b2Vec2 target);
+
+	bool Alive();
+	
 };
 #endif

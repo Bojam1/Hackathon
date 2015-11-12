@@ -83,12 +83,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="Level1.txt" />
+    <Text Include="Level1_enemies.txt" />
+    <Text Include="Level2_enemies.txt" />
+    <Text Include="Level3_enemies.txt" />
+    <Text Include="Level4_enemies.txt" />
+    <Text Include="Level5_enemies.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionResponder.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="FollowEnemy.h" />
     <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Button.h" />
@@ -106,6 +112,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="FollowEnemy.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
     <ClCompile Include="InputHandler.cpp" />
@@ -134,6 +141,7 @@
     <Image Include="Assets\door_b_r.png" />
     <Image Include="Assets\door_t_l.png" />
     <Image Include="Assets\door_t_r.png" />
+    <Image Include="Assets\enemy.png" />
     <Image Include="Assets\ExitButton.png" />
     <Image Include="Assets\floor.png" />
     <Image Include="Assets\left.png" />

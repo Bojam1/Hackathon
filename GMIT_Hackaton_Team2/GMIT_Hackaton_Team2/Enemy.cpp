@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include "Player.h"
 
+Enemy::Enemy(){}
+
 Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height) :CollisionResponder(){
 
 	geometry.x = position.x;
@@ -20,6 +22,13 @@ Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height) :Col
 	//Define the shape of the body
 	shape.SetAsBox(width * 0.5f, height * 0.5f);
 	boxBody->CreateFixture(&shape, 0.0f);
+
+	SDL_Rect tempSRC{ 0,0,50,50 };
+	m_sprite = new Sprite();
+	m_sprite->Init("Assets/enemy.png", geometry, tempSRC);
+	m_sprite->SetOffset(GetWidth()*0.5f, GetHeight()*0.5f);
+
+	alive = true;
 }
 
 Enemy::~Enemy() {
@@ -74,6 +83,7 @@ void Enemy::Update() {
 }
 
 void Enemy::Draw() {
+	//if(alive)
 	m_sprite->Draw();
 }
 
@@ -92,4 +102,7 @@ void Enemy::Init(std::string path) {
 	m_sprite = new Sprite();
 	m_sprite->Init(path, geometry, tempSRC);
 	m_sprite->SetOffset(GetWidth()*0.5f, GetHeight()*0.5f);
+}
+bool Enemy::Alive() {
+	return alive;
 }

@@ -20,10 +20,11 @@ protected:
 	int speed;
 	enum Direction { Up, Down, Left, Right };
 	Direction m_dir;
-
+	bool alive;
 	Sprite* m_sprite;
 
 public:
+	Enemy();
 	Enemy(b2World &world, b2Vec2 const &position, int width, int height);
 	~Enemy();
 
@@ -37,6 +38,8 @@ public:
 	void Update();
 	void Draw();
 	void Init(std::string path);
+
+	bool Alive();
 
 	//needed to override the contact classes in the collision reponder
 	virtual void onBeginContact(CollisionResponder* other) override;
