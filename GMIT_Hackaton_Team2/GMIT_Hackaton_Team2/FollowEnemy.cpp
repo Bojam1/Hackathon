@@ -6,6 +6,7 @@ FollowEnemy::FollowEnemy(){}
 FollowEnemy::FollowEnemy(b2World &world, b2Vec2 const &position, int width, int height) : Enemy(world,position,width,height){
 	speed = 1;
 	alive = true;
+	bodyDef.userData = this;
 }
 
 FollowEnemy::~FollowEnemy() {

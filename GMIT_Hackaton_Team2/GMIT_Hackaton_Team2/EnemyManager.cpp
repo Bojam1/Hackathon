@@ -18,7 +18,7 @@ void EnemyManager::init()
 void EnemyManager::AddEnemy(float x, float y, b2World * world)
 {
 	b2Vec2 pos(x, y);
-	FollowEnemy temp( *world, pos, 32, 32);
+	FollowEnemy temp = FollowEnemy( *world, pos, 50, 50);
 
 	enemies.push_back(temp);
 	

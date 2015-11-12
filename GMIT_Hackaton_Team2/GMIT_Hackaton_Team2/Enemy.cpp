@@ -15,7 +15,6 @@ Enemy::Enemy(b2World &world, b2Vec2 const &position, int width, int height) :Col
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position = b2Vec2(position.x + width*0.5f, position.y + height*0.5f);
 	bodyDef.angle = 0;
-	bodyDef.userData = this;
 	//Ask the b2Worldto create our body
 	boxBody = world.CreateBody(&bodyDef);
 

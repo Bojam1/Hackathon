@@ -48,7 +48,7 @@ void Player::Animate()
 
 bool Player::Update()
 {
-
+	myBodyDef.userData = this;
 	myRect.x = myBody->GetPosition().x;
 	myRect.y = myBody->GetPosition().y;
 
