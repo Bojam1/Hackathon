@@ -8,7 +8,7 @@
 
 using std::vector;
 
-class Bullets : private vector<Projectile>
+class Bullets : public vector<Projectile>
 {
 private:
 	const char* ASSETNAME;

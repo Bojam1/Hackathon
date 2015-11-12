@@ -125,3 +125,11 @@ b2Vec2 Player::getPosition()
 {
 	return myBody->GetPosition();
 }
+
+void Player::onBeginContact(CollisionResponder * other)
+{
+}
+
+void Player::onEndContact(CollisionResponder * other)
+{
+}

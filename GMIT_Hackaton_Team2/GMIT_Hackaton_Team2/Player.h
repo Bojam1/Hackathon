@@ -8,8 +8,9 @@
 #include "Renderer.h"
 #include "Sprite.h"
 
-class Player
-{
+#include "CollisionResponder.h"
+
+class Player : public CollisionResponder {
 public:
 	Player();
 
@@ -39,6 +40,10 @@ private:
 	bool canJump;
 	const int MAX_AMMO;
 	unsigned int ammo;
+
+	//needed to override the contact classes in the collision reponder
+	virtual void onBeginContact(CollisionResponder* other) override;
+	virtual void onEndContact(CollisionResponder* other) override;
 };
 
 #endif

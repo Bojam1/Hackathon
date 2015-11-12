@@ -8,6 +8,7 @@ class Projectile : public CollisionResponder {
 private:
 	SDL_Rect geometry_;
 	b2Body * boxBody_;
+	b2BodyDef bodyDef_;// Adding this breaks world step
 	int speed_;
 
 	b2Vec2 origin_;
@@ -21,6 +22,8 @@ private:
 
 public:
 	Projectile(b2World &world, b2Vec2 position, b2Vec2 direction);
+	Projectile(b2World &world, b2Vec2 position, b2Vec2 direction, int speed);
+
 
 	b2Vec2 GetPosition() const;
 	float GetHeight() const;
@@ -29,8 +32,11 @@ public:
 	void Draw();
 	void Init(std::string path);
 	bool isAlive() const;
+	void Die();
 
 	bool operator=(Projectile other);
+
+	void Refire(b2Vec2 position, b2Vec2 direction, int speed);
 
 	//needed to override the contact classes in the collision reponder
 	virtual void onBeginContact(CollisionResponder* other) override;

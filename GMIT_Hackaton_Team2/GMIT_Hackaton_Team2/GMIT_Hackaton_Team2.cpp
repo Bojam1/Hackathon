@@ -34,11 +34,11 @@ Button exitButton;
 Enemy* enemy;
 Door door;
 Bullets* bullets;
+Projectile* p;
 
 // Player
 SDL_Rect myRect{ 200, 200, 32, 64 };
 Player player;
-
 
 //box2d stuff
 const int SCALE = 32;
@@ -88,6 +88,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Fixed timestep
 	accumulator = 0;
+	p = new Projectile(*world, b2Vec2(100, 100), b2Vec2(1, 0), 0);
+	p->Die();
 
 	//Fire control
 	enemy = new Enemy(*world, b2Vec2(50, 100), 50, 50);
@@ -184,6 +186,7 @@ void Init()
 	destination = { SCREEN_WIDTH / 2 - 166, SCREEN_HEIGHT / 4 * 3 - 59, 323, 118 };
 	exitButton.Init(destination, "Assets/ExitButton.png");
 	world->SetContactListener(&myContactListenerInstance);
+	p->Init("Assets/Projectile.png");
 }
 void DrawGame()
 {
@@ -194,6 +197,7 @@ void DrawGame()
 	ObstacleManager::GetInstance()->Draw();
 	player.Draw();
 	enemy->Draw();
+	p->Draw();
 
 	Renderer::GetInstance()->RenderScreen();
 }
@@ -237,7 +241,7 @@ void UpdateGame()
 
 	CheckFiring();
 
-
+	p->Update();
 	bullets->Update();
 
 	world->Step(timeStep, velocityIterations, positionIterations);
@@ -279,22 +283,38 @@ void CheckFiring()
 {
 	if (player.u)
 	{
-		bullets->Fire(player.getPosition() + b2Vec2(0, -10), b2Vec2(0, -1));
+		//bullets->Fire(player.getPosition() + b2Vec2(0, -20), b2Vec2(0, -1));
+		if (!p->isAlive())
+		{
+			p->Refire(player.getPosition() + b2Vec2(0, -20), b2Vec2(0, -1), 5);
+		}
 	}
 
 	if (player.d)
 	{
-		bullets->Fire(player.getPosition() + b2Vec2(0, 10), b2Vec2(0, 1));
+		//bullets->Fire(player.getPosition() + b2Vec2(0, 20), b2Vec2(0, 1));
+		if (!p->isAlive())
+		{
+			p->Refire(player.getPosition() + b2Vec2(0, 20), b2Vec2(0, 1), 5);
+		}
 	}
 
 	if (player.l)
 	{
-		bullets->Fire(player.getPosition() + b2Vec2(-10, 0), b2Vec2(-1, 0));
+		//bullets->Fire(player.getPosition() + b2Vec2(-20, 0), b2Vec2(-1, 0));
+		if (!p->isAlive())
+		{
+			p->Refire(player.getPosition() + b2Vec2(-20, 0), b2Vec2(-1, 0), 5);
+		}
 	}
 
 	if (player.r)
 	{
-		bullets->Fire(player.getPosition() + b2Vec2(10, 0), b2Vec2(1, 0));
+		//bullets->Fire(player.getPosition() + b2Vec2(20, 0), b2Vec2(1, 0));
+		if (!p->isAlive())
+		{
+			p->Refire(player.getPosition() + b2Vec2(20, 0), b2Vec2(1, 0), 5);
+		}
 	}
 
 }
