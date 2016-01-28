@@ -10,6 +10,9 @@ Player::Player() :CollisionResponder()
 
 void Player::Init(SDL_Rect pRect, b2World *pWorld)
 {
+
+	mutex = SDL_CreateMutex();
+
 	health = 5;
 
 	myRect = pRect;
@@ -74,10 +77,7 @@ void Player::Init(SDL_Rect pRect, b2World *pWorld)
 	gSpriteClips[7].w = 60;
 	gSpriteClips[7].h = 66;
 
-
 	frame = 0;
-
-
 }
 
 //Doesnt work... Oh well... Who really cares?
@@ -85,24 +85,20 @@ void Player::Animate()
 {
 	//Current animation frame
 
-
 	//Render current frame
 	SDL_Rect currentClip = gSpriteClips[frame / 7];
 	playerSprite.SetSourceRect(currentClip);
 
 	++frame;
 
-
 	if (frame / 7 > 7)
 	{
 		frame = 0;
 	}
-	
 }
 
 bool Player::Update()
 {
-
 	myRect.x = myBody->GetPosition().x;
 	myRect.y = myBody->GetPosition().y;
 
@@ -120,7 +116,6 @@ bool Player::Update()
 
 	playerSprite.SetPosition(myBody->GetPosition().x, myBody->GetPosition().y);
 
-
 	return true;
 }
 
@@ -128,37 +123,35 @@ void Player::Move(InputHandler & input)
 {
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
+	b2Vec2 result;
+
 	if (keys[SDL_SCANCODE_A]) {
-		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x - 0.75, myBody->GetPosition().y), 0);
-		//myBody->SetLinearVelocity(b2Vec2(-2, 0));
-		//Animate();
-		myBody->ApplyLinearImpulse(b2Vec2(-2, 0), b2Vec2(0, 0), true);
+		result = b2Vec2(-2, 0);
 	}
 
-	if (keys[SDL_SCANCODE_D]) {
-		//myBody->SetLinearVelocity(b2Vec2(2, 0));
-		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x + 0.75, myBody->GetPosition().y), 0);
-		myBody->ApplyLinearImpulse(b2Vec2(2, 0), b2Vec2(0, 0), true);
+	else if (keys[SDL_SCANCODE_D]) {
+		result = b2Vec2(2, 0);
 	}
 
-	if (keys[SDL_SCANCODE_W]) {
-		//myBody->SetLinearVelocity(b2Vec2(0, -2));
-		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x, myBody->GetPosition().y - 0.75), 0);
-		myBody->ApplyLinearImpulse(b2Vec2(0, -2), b2Vec2(0, 0), true);
+	else if (keys[SDL_SCANCODE_W]) {
+		result = b2Vec2(0, -2);
 	}
 
-	if (keys[SDL_SCANCODE_S]) {
-		//myBody->SetLinearVelocity(b2Vec2(0, 2));
-		//myBody->SetTransform(b2Vec2(myBody->GetPosition().x, myBody->GetPosition().y + 0.75), 0);
-		myBody->ApplyLinearImpulse(b2Vec2(0, 2), b2Vec2(0, 0), true);
+	else if (keys[SDL_SCANCODE_S]) {
+		result = b2Vec2(0, 2);
 	}
 
-	if (!keys[SDL_SCANCODE_D] && !keys[SDL_SCANCODE_A] && !keys[SDL_SCANCODE_W] && !keys[SDL_SCANCODE_S])
+	else if (!keys[SDL_SCANCODE_D] && !keys[SDL_SCANCODE_A] && !keys[SDL_SCANCODE_W] && !keys[SDL_SCANCODE_S])
 	{
 		myBody->SetLinearVelocity(b2Vec2(0, 0));
 	}
 
-
+	//lock
+	if (SDL_LockMutex(mutex) == 0) {
+		myBody->ApplyLinearImpulse(result, b2Vec2(0, 0), true);
+		SDL_UnlockMutex(mutex);
+	}
+	//unlock
 }
 
 void Player::Draw()
@@ -167,7 +160,8 @@ void Player::Draw()
 	Animate();
 }
 
-void Player::Add_SubHealth(int amount) {
+void Player::Add_SubHealth(int amount)
+{
 	health += amount;
 }
 
@@ -181,12 +175,14 @@ b2Body *Player::getBody()
 	return myBody;
 }
 
-void Player::onBeginContact(CollisionResponder* other) {
+void Player::onBeginContact(CollisionResponder* other)
+{
 	std::cout << "enemy Collide begin" << std::endl;
 	printf("++contact++");
 }
 
-void Player::onEndContact(CollisionResponder* other) {
+void Player::onEndContact(CollisionResponder* other)
+{
 	std::cout << "enemy Collide end" << std::endl;
 	printf("++contact++");
 }

@@ -1,241 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-<<<<<<< Updated upstream
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GMIT_Hackaton_Team2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObstacleManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Door.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionResponder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyContactListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstacle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObstacleManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< Updated upstream
-    <ClInclude Include="Door.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-=======
-=======
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="FollowEnemy.cpp" />
     <ClCompile Include="GMIT_Hackaton_Team2.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Obstacle.cpp" />
-    <ClCompile Include="ObstacleManager.cpp" />
-    <ClCompile Include="FollowEnemy.cpp" />
+    <ClCompile Include="Mutex.cpp" />
+    <ClCompile Include="DataBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionResponder.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FollowEnemy.h" />
     <ClInclude Include="MyContactListener.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Obstacle.h" />
-    <ClInclude Include="ObstacleManager.h" />
-    <ClInclude Include="FollowEnemy.h" />
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+    <ClInclude Include="Mutex.h" />
+    <ClInclude Include="DataBase.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\bottom.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\corner.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\corner_bot_left.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\ExitButton.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\left.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\menu.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\Play.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\PlayButton.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\right.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\top_wall_bottomhalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\top_wall_tophalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\bot_wall_bottomhalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\bot_wall_tophalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\right_wall_bottomhalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\right_wall_tophalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\top left corner.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\left_wall_bottomhalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\left_wall_tophalf.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\door_b_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\door_b_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\door_t_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\door_t_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\b_door_b_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\b_door_b_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\b_door_t_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\b_door_t_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\l_door_b_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\l_door_b_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\l_door_t_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\l_door_t_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\r_door_b_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\r_door_b_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\r_door_t_l.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\r_door_t_r.png">
-      <Filter>Artwork</Filter>
-    </Image>
-    <Image Include="Assets\floor.png">
-      <Filter>Artwork</Filter>
-    </Image>
+    <Image Include="Assets\bottom.png" />
+    <Image Include="Assets\bot_wall_bottomhalf.png" />
+    <Image Include="Assets\bot_wall_tophalf.png" />
+    <Image Include="Assets\b_door_b_l.png" />
+    <Image Include="Assets\b_door_b_r.png" />
+    <Image Include="Assets\b_door_t_l.png" />
+    <Image Include="Assets\b_door_t_r.png" />
+    <Image Include="Assets\corner.png" />
+    <Image Include="Assets\corner_bot_left.png" />
+    <Image Include="Assets\door_b_l.png" />
+    <Image Include="Assets\door_b_r.png" />
+    <Image Include="Assets\door_t_l.png" />
+    <Image Include="Assets\door_t_r.png" />
+    <Image Include="Assets\ExitButton.png" />
+    <Image Include="Assets\floor.png" />
+    <Image Include="Assets\left.png" />
+    <Image Include="Assets\left_wall_bottomhalf.png" />
+    <Image Include="Assets\left_wall_tophalf.png" />
+    <Image Include="Assets\l_door_b_l.png" />
+    <Image Include="Assets\l_door_b_r.png" />
+    <Image Include="Assets\l_door_t_l.png" />
+    <Image Include="Assets\l_door_t_r.png" />
+    <Image Include="Assets\menu.png" />
+    <Image Include="Assets\Play.png" />
+    <Image Include="Assets\PlayButton.png" />
+    <Image Include="Assets\right.png" />
+    <Image Include="Assets\right_wall_bottomhalf.png" />
+    <Image Include="Assets\right_wall_tophalf.png" />
+    <Image Include="Assets\r_door_b_l.png" />
+    <Image Include="Assets\r_door_b_r.png" />
+    <Image Include="Assets\r_door_t_l.png" />
+    <Image Include="Assets\r_door_t_r.png" />
+    <Image Include="Assets\top left corner.png" />
+    <Image Include="Assets\top_wall_bottomhalf.png" />
+    <Image Include="Assets\top_wall_tophalf.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
     <Text Include="Level1.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Artwork">
-      <UniqueIdentifier>{259a7b57-4962-474d-8411-59078425a81a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4aa169b1-bd0e-4828-9a62-5dc48fc38d49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{d5574667-4c36-4f88-b6f5-ab501fefde42}</UniqueIdentifier>
-    </Filter>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
 </Project>

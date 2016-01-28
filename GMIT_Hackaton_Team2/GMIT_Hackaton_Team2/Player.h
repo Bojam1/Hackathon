@@ -9,6 +9,7 @@
 #include "Sprite.h"
 #include "CollisionResponder.h"
 #include <MyContactListener.h>
+#include <mutex>
 
 class Player : public CollisionResponder
 {
@@ -31,6 +32,7 @@ public:
 	virtual void onEndContact(CollisionResponder* other) override;
 
 private:
+	SDL_mutex *mutex;
 	int health;
 	SDL_Rect myRect;
 	SDL_Rect source;

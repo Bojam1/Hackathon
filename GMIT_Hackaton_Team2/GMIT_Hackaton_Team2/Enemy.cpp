@@ -78,12 +78,12 @@ void Enemy::Draw() {
 }
 
 void Enemy::onBeginContact(CollisionResponder* other) {
-	std::cout << "enemy Collide begin" << std::endl;
+	//std::cout << "enemy Collide begin" << std::endl;
 
 }
 
 void Enemy::onEndContact(CollisionResponder* other) {
-	std::cout << "enemy Collide end" << std::endl;
+	//std::cout << "enemy Collide end" << std::endl;
 	takePlayershealth = true;
 }
 

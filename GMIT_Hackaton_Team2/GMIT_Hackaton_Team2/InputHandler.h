@@ -6,10 +6,15 @@
 
 class InputHandler {
 public:
-	InputHandler();
-	~InputHandler();
+	static InputHandler* GetInstance();
+	~InputHandler()
+	{
+		instanceFlag = false;
+	}
 	bool CheckInput(SDL_Keycode key, SDL_Event event);
 private:
+	static bool instanceFlag;
+	static InputHandler* instance;
 	//SDL_Event event;
 };
 
